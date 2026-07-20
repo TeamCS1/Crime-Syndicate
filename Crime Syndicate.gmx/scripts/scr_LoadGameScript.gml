@@ -519,32 +519,28 @@ else
         global.currentCity = string(impArray[i]);
         i++;
         
-        //OPTIONS MENU - 13
-        global.showStatusBar = string(impArray[i]);
+        //OPTIONS MENU - 11
+        global.showStatusBar = real(impArray[i]);
         i++;
-        global.hitmenTimer = string(impArray[i]);
+        global.hitmenTimer = real(impArray[i]);
         i++;
         global.resolutionSizeText = string(impArray[i]);
         i++;
-        global.trophySetInterval = string(impArray[i]);
+        global.trophySetInterval = real(impArray[i]);
         i++;
-        global.trophyPopupDelay = string(impArray[i]);
+        global.trophyPopupDelay = real(impArray[i]);
         i++;
-        global.themeType = string(impArray[i]);
+        global.themeType = real(impArray[i]);
         i++;
-        global.fpsMode = string(impArray[i]);
+        global.fpsMode = real(impArray[i]);
         i++;
-        global.rLevel = string(impArray[i]);
+        global.rLevel = real(impArray[i]);
         i++;
-        global.gLevel = string(impArray[i]);
+        global.gLevel = real(impArray[i]);
         i++;
-        global.bLevel = string(impArray[i]);
+        global.bLevel = real(impArray[i]);
         i++;
-        global.spriteTintingR = string(impArray[i]);
-        i++;
-        global.spriteTintingG = string(impArray[i]);
-        i++;
-        global.spriteTintingB = string(impArray[i]);
+        global.spriteTinting = real(impArray[i]);
         i++;
          
         //Tracks statistics - 7
