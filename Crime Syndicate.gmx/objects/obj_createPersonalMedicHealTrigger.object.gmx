@@ -49,33 +49,9 @@ image_yscale = 1.10;
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>if global.moneyCount &gt;= obj_createPersonalMedic.healthConditionCost
+            <string>if scr_deduct_money(obj_createPersonalMedic.healthConditionCost)
 {
-    global.moneyCount -= obj_createPersonalMedic.healthConditionCost;
     global.healthCount = global.healthCountMax;
-    show_debug_message("normal op")   
-}
-
-else if global.moneyCountMillion &gt;= 1
-{
-    global.moneyCount += 1000000;
-    global.moneyCountMillion -= 1;
-    show_debug_message("million removed and added")
-    
-    //if its less than a million
-    if global.moneyCount &gt; 0
-    {
-        //store money temporily
-        tempMoney = -1; 
-        tempMoney = global.moneyCount;
-        show_debug_message("Money stored temporily")
-        
-        global.moneyCount = 999999;
-        global.moneyCount -= obj_createPersonalMedic.healthConditionCost;
-        global.healthCount = global.healthCountMax;
-        global.moneyCount = tempMoney + 1;
-        show_debug_message("Money taken out")  
-    }    
 }
 </string>
           </argument>
