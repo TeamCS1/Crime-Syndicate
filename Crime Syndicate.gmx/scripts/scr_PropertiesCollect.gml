@@ -16,3 +16,17 @@ if global.totalPropertiesIncomeBillion > 0  //Billion
     global.totalPropertiesIncomeBillion = 0;
     global.moneySuffix = "Billion";
 }
+
+if global.totalPropertiesIncomeTrillion > 0  //Trillion
+{
+    global.moneyCountTrillion += floor(global.totalPropertiesIncomeTrillion);
+    global.totalPropertiesIncomeTrillion = 0;
+    global.moneySuffix = "Trillion";
+}
+
+if global.totalPropertiesIncomeQuadrillion > 0  //Quadrillion
+{
+    global.moneyCountQuadrillion += floor(global.totalPropertiesIncomeQuadrillion);
+    global.totalPropertiesIncomeQuadrillion = 0;
+    global.moneySuffix = "Quadrillion";
+}

@@ -1,176 +1,148 @@
 //BUY BUTTON
 if obj_black_market_shop_gui_upper_piece.currentPage == 0   //Melee weapons
 {
-    if obj_sharedInspectorClass.itemIndex == 0   //Ballbuster
+    if obj_sharedInspectorClass.itemIndex == 0 && scr_deduct_money(obj_sharedInspectorClass.price)   //Ballbuster
     {
         global.ballbusterQuantity++;
-        global.moneyCount -= obj_sharedInspectorClass.price;
     }
     
-    else if obj_sharedInspectorClass.itemIndex == 1   //Baseball bat
+    else if obj_sharedInspectorClass.itemIndex == 1 && scr_deduct_money(obj_sharedInspectorClass.price)   //Baseball bat
     {
         global.baseballBatQuantity++;
-        global.moneyCount -= obj_sharedInspectorClass.price;
     }
     
-    else if obj_sharedInspectorClass.itemIndex == 2   //Baseball bat spiked
+    else if obj_sharedInspectorClass.itemIndex == 2 && scr_deduct_money(obj_sharedInspectorClass.price)   //Baseball bat spiked
     {
         global.baseballBatSpikedQuantity++;
-        global.moneyCount -= obj_sharedInspectorClass.price;
     } 
     
-    else if obj_sharedInspectorClass.itemIndex == 3   //Basic mallet
+    else if obj_sharedInspectorClass.itemIndex == 3 && scr_deduct_money(obj_sharedInspectorClass.price)   //Basic mallet
     {
         global.basicMalletRubberQuantity++;
-        global.moneyCount -= obj_sharedInspectorClass.price;
     }
     
-    else if obj_sharedInspectorClass.itemIndex == 4   //Basic sledgehammer
+    else if obj_sharedInspectorClass.itemIndex == 4 && scr_deduct_money(obj_sharedInspectorClass.price)   //Basic sledgehammer
     {
         global.basicSledgehammerQuantity++;
-        global.moneyCount -= obj_sharedInspectorClass.price;
     }
     
-    else if obj_sharedInspectorClass.itemIndex == 5   //Basic wrench
+    else if obj_sharedInspectorClass.itemIndex == 5 && scr_deduct_money(obj_sharedInspectorClass.price)   //Basic wrench
     {
         global.basicWrenchQuantity++;
-        global.moneyCount -= obj_sharedInspectorClass.price;
     }
     
-    else if obj_sharedInspectorClass.itemIndex == 6   //Big axe
+    else if obj_sharedInspectorClass.itemIndex == 6 && scr_deduct_money(obj_sharedInspectorClass.price)   //Big axe
     {
         global.bigAxeQuantity++;
-        global.moneyCount -= obj_sharedInspectorClass.price;
     }
     
-    else if obj_sharedInspectorClass.itemIndex == 7   //Big sign
+    else if obj_sharedInspectorClass.itemIndex == 7 && scr_deduct_money(obj_sharedInspectorClass.price)   //Big sign
     {
         global.bigSignQuantity++;
-        global.moneyCount -= obj_sharedInspectorClass.price;
     }
     
-    else if obj_sharedInspectorClass.itemIndex == 8   //standard knife
+    else if obj_sharedInspectorClass.itemIndex == 8 && scr_deduct_money(obj_sharedInspectorClass.price)   //standard knife
     {
         global.standardKnifeQuantity++;
-        global.moneyCount -= obj_sharedInspectorClass.price;
     }
     
-    else if obj_sharedInspectorClass.itemIndex == 9   //sturdy knife
+    else if obj_sharedInspectorClass.itemIndex == 9 && scr_deduct_money(obj_sharedInspectorClass.price)   //sturdy knife
     {
         global.sturdyKnifeQuantity++;
-        global.moneyCount -= obj_sharedInspectorClass.price;
     }
     
-    else if obj_sharedInspectorClass.itemIndex == 10   //golf club
+    else if obj_sharedInspectorClass.itemIndex == 10 && scr_deduct_money(obj_sharedInspectorClass.price)   //golf club
     {
         global.golfClubQuantity++;
-        global.moneyCount -= obj_sharedInspectorClass.price;
     }
     
-    else if obj_sharedInspectorClass.itemIndex == 11   //Bone hooks
+    else if obj_sharedInspectorClass.itemIndex == 11 && scr_deduct_money(obj_sharedInspectorClass.price)   //Bone hooks
     {
         global.boneHooksQuantity++;
-        global.moneyCount -= obj_sharedInspectorClass.price;
     }
     
-    else if obj_sharedInspectorClass.itemIndex == 12   //Bunsen burder
+    else if obj_sharedInspectorClass.itemIndex == 12 && scr_deduct_money(obj_sharedInspectorClass.price)   //Bunsen burder
     {
         global.bunsenBurnerMixedChemicalsQuantity++;
-        global.moneyCount -= obj_sharedInspectorClass.price;
     }
     
-    else if obj_sharedInspectorClass.itemIndex == 13   //curved nailboard
+    else if obj_sharedInspectorClass.itemIndex == 13 && scr_deduct_money(obj_sharedInspectorClass.price)   //curved nailboard
     {
         global.curvedNailboardQuantity++;
-        global.moneyCount -= obj_sharedInspectorClass.price;
     }
     
-    else if obj_sharedInspectorClass.itemIndex == 14   //handmade bone club
+    else if obj_sharedInspectorClass.itemIndex == 14 && scr_deduct_money(obj_sharedInspectorClass.price)   //handmade bone club
     {
         global.handmadeBoneClubQuantity++;
-        global.moneyCount -= obj_sharedInspectorClass.price;
     }
 }
 
 if obj_black_market_shop_gui_upper_piece.currentPage == 1   //ARMOUR
 {
     
-    if obj_sharedInspectorClass.itemIndex == 0   //stealth suit
+    if obj_sharedInspectorClass.itemIndex == 0 && scr_deduct_money(obj_sharedInspectorClass.price)   //stealth suit
     {
         global.stealth_suitQuantity++;
-        global.moneyCount -= obj_sharedInspectorClass.price;  
     }
     
-    else if obj_sharedInspectorClass.itemIndex == 1   //stealth suit
+    else if obj_sharedInspectorClass.itemIndex == 1 && scr_deduct_money(obj_sharedInspectorClass.price)   //stealth suit
     {
         global.military_suitQuantity++;
-        global.moneyCount -= obj_sharedInspectorClass.price;
     }
     
-    else if obj_sharedInspectorClass.itemIndex == 2   //stealth suit
+    else if obj_sharedInspectorClass.itemIndex == 2 && scr_deduct_money(obj_sharedInspectorClass.price)   //stealth suit
     {
         global.jugganaut_suitQuantity++;
-        global.moneyCount -= obj_sharedInspectorClass.price;
     }
     
-    else if obj_sharedInspectorClass.itemIndex == 3   //stealth suit
+    else if obj_sharedInspectorClass.itemIndex == 3 && scr_deduct_money(obj_sharedInspectorClass.price)   //stealth suit
     {
         global.power_armourQuantity++;
-        global.moneyCount -= obj_sharedInspectorClass.price;
     }
     
-    else if obj_sharedInspectorClass.itemIndex == 4   //stealth suit
+    else if obj_sharedInspectorClass.itemIndex == 4 && scr_deduct_money(obj_sharedInspectorClass.price)   //stealth suit
     {
         global.prototype_suitQuantity++;
-        global.moneyCount -= obj_sharedInspectorClass.price;
     }
     
-    else if obj_sharedInspectorClass.itemIndex == 5   //stealth suit
+    else if obj_sharedInspectorClass.itemIndex == 5 && scr_deduct_money(obj_sharedInspectorClass.price)   //stealth suit
     {
         global.three_piece_suit_normalQuantity++;
-        global.moneyCount -= obj_sharedInspectorClass.price;
     }
     
-    else if obj_sharedInspectorClass.itemIndex == 6   //stealth suit
+    else if obj_sharedInspectorClass.itemIndex == 6 && scr_deduct_money(obj_sharedInspectorClass.price)   //stealth suit
     {
         global.three_piece_suit_kevlarQuantity++;
-        global.moneyCount -= obj_sharedInspectorClass.price;
     }
     
-    else if obj_sharedInspectorClass.itemIndex == 7   //stealth suit
+    else if obj_sharedInspectorClass.itemIndex == 7 && scr_deduct_money(obj_sharedInspectorClass.price)   //stealth suit
     {
         global.flak_jacketQuantity++;
-        global.moneyCount -= obj_sharedInspectorClass.price;
     }
     
-    else if obj_sharedInspectorClass.itemIndex == 8   //stealth suit
+    else if obj_sharedInspectorClass.itemIndex == 8 && scr_deduct_money(obj_sharedInspectorClass.price)   //stealth suit
     {
         global.radiation_suitQuantity++;
-        global.moneyCount -= obj_sharedInspectorClass.price;
     }
     
-    else if obj_sharedInspectorClass.itemIndex == 9   //stealth suit
+    else if obj_sharedInspectorClass.itemIndex == 9 && scr_deduct_money(obj_sharedInspectorClass.price)   //stealth suit
     {
         global.cloaking_deviceQuantity++;
-        global.moneyCount -= obj_sharedInspectorClass.price;
     }
     
-    else if obj_sharedInspectorClass.itemIndex == 10   //stealth suit
+    else if obj_sharedInspectorClass.itemIndex == 10 && scr_deduct_money(obj_sharedInspectorClass.price)   //stealth suit
     {
         global.luxury_leather_gold_jacketQuantity++;
-        global.moneyCount -= obj_sharedInspectorClass.price;
     }
     
-    else if obj_sharedInspectorClass.itemIndex == 11   //stealth suit
+    else if obj_sharedInspectorClass.itemIndex == 11 && scr_deduct_money(obj_sharedInspectorClass.price)   //stealth suit
     {
         global.spider_silk_armourQuantity++;
-        global.moneyCount -= obj_sharedInspectorClass.price;
     }
     
-    else if obj_sharedInspectorClass.itemIndex == 12   //stealth suit
+    else if obj_sharedInspectorClass.itemIndex == 12 && scr_deduct_money(obj_sharedInspectorClass.price)   //stealth suit
     {
         global.handmade_bone_armourQuantity++;
-        global.moneyCount -= obj_sharedInspectorClass.price;
     }
 }
 
@@ -178,100 +150,84 @@ if obj_black_market_shop_gui_upper_piece.currentPage == 1   //ARMOUR
 
 if obj_black_market_shop_gui_upper_piece.currentPage == 3   //VEHICLES
 {
-    if obj_sharedInspectorClass.itemIndex == 0  
+    if obj_sharedInspectorClass.itemIndex == 0 && scr_deduct_money(obj_sharedInspectorClass.price)
     {
         global.freight_liner_vanQuantity++;
-        global.moneyCount -= obj_sharedInspectorClass.price;  
     }
     
-    else if obj_sharedInspectorClass.itemIndex == 1  
+    else if obj_sharedInspectorClass.itemIndex == 1 && scr_deduct_money(obj_sharedInspectorClass.price)
     {
         global.transporter_vanQuantity++;
-        global.moneyCount -= obj_sharedInspectorClass.price;  
     }
     
-    else if obj_sharedInspectorClass.itemIndex == 2  
+    else if obj_sharedInspectorClass.itemIndex == 2 && scr_deduct_money(obj_sharedInspectorClass.price)
     {
         global.limousineQuantity++;
-        global.moneyCount -= obj_sharedInspectorClass.price;  
     }
     
-    else if obj_sharedInspectorClass.itemIndex == 3  
+    else if obj_sharedInspectorClass.itemIndex == 3 && scr_deduct_money(obj_sharedInspectorClass.price)
     {
         global.pickup_truckQuantity++;
-        global.moneyCount -= obj_sharedInspectorClass.price;  
     }
     
-    else if obj_sharedInspectorClass.itemIndex == 4  
+    else if obj_sharedInspectorClass.itemIndex == 4 && scr_deduct_money(obj_sharedInspectorClass.price)
     {
         global.sports_suvQuantity++;
-        global.moneyCount -= obj_sharedInspectorClass.price;  
     }
     
-    else if obj_sharedInspectorClass.itemIndex == 5  
+    else if obj_sharedInspectorClass.itemIndex == 5 && scr_deduct_money(obj_sharedInspectorClass.price)
     {
         global.modern_suvQuantity++;
-        global.moneyCount -= obj_sharedInspectorClass.price;  
     }
     
-    else if obj_sharedInspectorClass.itemIndex == 6  
+    else if obj_sharedInspectorClass.itemIndex == 6 && scr_deduct_money(obj_sharedInspectorClass.price)
     {
         global.sports_sedanQuantity++;
-        global.moneyCount -= obj_sharedInspectorClass.price;  
     }
     
-    else if obj_sharedInspectorClass.itemIndex == 7  
+    else if obj_sharedInspectorClass.itemIndex == 7 && scr_deduct_money(obj_sharedInspectorClass.price)
     {
         global.offroad4x4_weaponisedQuantity++;
-        global.moneyCount -= obj_sharedInspectorClass.price;  
     }
     
-    else if obj_sharedInspectorClass.itemIndex == 8  
+    else if obj_sharedInspectorClass.itemIndex == 8 && scr_deduct_money(obj_sharedInspectorClass.price)
     {
         global.military8x8_truckQuantity++;
-        global.moneyCount -= obj_sharedInspectorClass.price;  
     }
     
-    else if obj_sharedInspectorClass.itemIndex == 9  
+    else if obj_sharedInspectorClass.itemIndex == 9 && scr_deduct_money(obj_sharedInspectorClass.price)
     {
         global.private_jetQuantity++;
-        global.moneyCount -= obj_sharedInspectorClass.price;  
     }
     
-    else if obj_sharedInspectorClass.itemIndex == 10  
+    else if obj_sharedInspectorClass.itemIndex == 10 && scr_deduct_money(obj_sharedInspectorClass.price)
     {
         global.f16_fighter_jetQuantity++;
-        global.moneyCount -= obj_sharedInspectorClass.price;  
     }
     
-    else if obj_sharedInspectorClass.itemIndex == 11  
+    else if obj_sharedInspectorClass.itemIndex == 11 && scr_deduct_money(obj_sharedInspectorClass.price)
     {
         global.apache_helicopterQuantity++;
-        global.moneyCount -= obj_sharedInspectorClass.price;  
     }
     
-    else if obj_sharedInspectorClass.itemIndex == 12  
+    else if obj_sharedInspectorClass.itemIndex == 12 && scr_deduct_money(obj_sharedInspectorClass.price)
     {
         global.chinook_helicopterQuantity++;
-        global.moneyCount -= obj_sharedInspectorClass.price;  
     }
     
-    else if obj_sharedInspectorClass.itemIndex == 13  
+    else if obj_sharedInspectorClass.itemIndex == 13 && scr_deduct_money(obj_sharedInspectorClass.price)
     {
         global.hearseQuantity++;
-        global.moneyCount -= obj_sharedInspectorClass.price;  
     }
     
-    else if obj_sharedInspectorClass.itemIndex == 14  
+    else if obj_sharedInspectorClass.itemIndex == 14 && scr_deduct_money(obj_sharedInspectorClass.price)
     {
         global.dcm_deluxo_coupeQuantity++;
-        global.moneyCount -= obj_sharedInspectorClass.price;  
     }
     
-    else if obj_sharedInspectorClass.itemIndex == 15  
+    else if obj_sharedInspectorClass.itemIndex == 15 && scr_deduct_money(obj_sharedInspectorClass.price)
     {
         global.ghost_motorcycleQuantity++;
-        global.moneyCount -= obj_sharedInspectorClass.price;  
     }
     
     else if (scr_deduct_money(obj_sharedInspectorClass.price)) {
@@ -284,71 +240,60 @@ if obj_black_market_shop_gui_upper_piece.currentPage == 3   //VEHICLES
 
 if obj_black_market_shop_gui_upper_piece.currentPage == 4   //Automatics
 {
-    if obj_sharedInspectorClass.itemIndex == 0  //AK47 Rifle
+    if obj_sharedInspectorClass.itemIndex == 0 && scr_deduct_money(obj_sharedInspectorClass.price)   //AK47 Rifle
     {
         global.ak47Quantity++;
-        global.moneyCount -= obj_sharedInspectorClass.price;
     }
     
-    else if obj_sharedInspectorClass.itemIndex == 1 //SIG Sauer Rifle
+    else if obj_sharedInspectorClass.itemIndex == 1 && scr_deduct_money(obj_sharedInspectorClass.price)   //SIG Sauer Rifle
     {
         global.sigSauerRifleQuantity++;
-        global.moneyCount -= obj_sharedInspectorClass.price;
     }
     
-    else if obj_sharedInspectorClass.itemIndex == 2 //M4 Rifle
+    else if obj_sharedInspectorClass.itemIndex == 2 && scr_deduct_money(obj_sharedInspectorClass.price)   //M4 Rifle
     {
         global.m4RifleQuantity++;
-        global.moneyCount -= obj_sharedInspectorClass.price;
     }
   
-    else if obj_sharedInspectorClass.itemIndex == 3 //KRINKOV Rifle
+    else if obj_sharedInspectorClass.itemIndex == 3 && scr_deduct_money(obj_sharedInspectorClass.price)   //KRINKOV Rifle
     {
         global.krinkovRifleQuantity++;
-        global.moneyCount -= obj_sharedInspectorClass.price;
     }
 
     
-    else if obj_sharedInspectorClass.itemIndex == 4 //ASVAL9 Rifle
+    else if obj_sharedInspectorClass.itemIndex == 4 && scr_deduct_money(obj_sharedInspectorClass.price)   //ASVAL9 Rifle
     {
         global.asVal9RifleQuantity++;
-        global.moneyCount -= obj_sharedInspectorClass.price;
     }
 
-    else if obj_sharedInspectorClass.itemIndex == 5 //Combine Rifle
+    else if obj_sharedInspectorClass.itemIndex == 5 && scr_deduct_money(obj_sharedInspectorClass.price)   //Combine Rifle
     {
         global.combineRifleQuantity++;
-        global.moneyCount -= obj_sharedInspectorClass.price;
     }
 
-    else if obj_sharedInspectorClass.itemIndex == 6 //AUG Rifle
+    else if obj_sharedInspectorClass.itemIndex == 6 && scr_deduct_money(obj_sharedInspectorClass.price)   //AUG Rifle
     {
         global.augRifleQuantity++;
-        global.moneyCount -= obj_sharedInspectorClass.price;
     }
 
-    else if obj_sharedInspectorClass.itemIndex == 7 //ASH 12 Tarkov Rifle
+    else if obj_sharedInspectorClass.itemIndex == 7 && scr_deduct_money(obj_sharedInspectorClass.price)   //ASH 12 Tarkov Rifle
     {
         global.ash12TarkovRifleQuantity++;
-        global.moneyCount -= obj_sharedInspectorClass.price;
     }
 
-    else if obj_sharedInspectorClass.itemIndex == 8 //ASTW2 Carbine Rifle
+    else if obj_sharedInspectorClass.itemIndex == 8 && scr_deduct_money(obj_sharedInspectorClass.price)   //ASTW2 Carbine Rifle
     {
         global.astw2CarbineRifleQuantity++;
-        global.moneyCount -= obj_sharedInspectorClass.price;
     }
 
-    else if obj_sharedInspectorClass.itemIndex == 9 //Tommy Rifle
+    else if obj_sharedInspectorClass.itemIndex == 9 && scr_deduct_money(obj_sharedInspectorClass.price)   //Tommy Rifle
     {
         global.tommyRifleQuantity++;
-        global.moneyCount -= obj_sharedInspectorClass.price;
     }
 
-    else if obj_sharedInspectorClass.itemIndex == 10 //Tombstone Rifle
+    else if obj_sharedInspectorClass.itemIndex == 10 && scr_deduct_money(obj_sharedInspectorClass.price)   //Tombstone Rifle
     {
         global.tombstoneRifleQuantity++;
-        global.moneyCount -= obj_sharedInspectorClass.price;
     }
 }
 
@@ -356,46 +301,39 @@ if obj_black_market_shop_gui_upper_piece.currentPage == 4   //Automatics
 
 if obj_black_market_shop_gui_upper_piece.currentPage == 5   //Pistols & LMG
 {
-    if obj_sharedInspectorClass.itemIndex == 0  
+    if obj_sharedInspectorClass.itemIndex == 0 && scr_deduct_money(obj_sharedInspectorClass.price)
     {
         global.pythonQuantity++;
-        global.moneyCount -= obj_sharedInspectorClass.price;
     }
     
-    else if obj_sharedInspectorClass.itemIndex == 1  
+    else if obj_sharedInspectorClass.itemIndex == 1 && scr_deduct_money(obj_sharedInspectorClass.price)
     {
         global.dragonPistolQuantity++;
-        global.moneyCount -= obj_sharedInspectorClass.price;
     }
     
-    else if obj_sharedInspectorClass.itemIndex == 2  
+    else if obj_sharedInspectorClass.itemIndex == 2 && scr_deduct_money(obj_sharedInspectorClass.price)
     {
         global.makarovPistolQuantity++;
-        global.moneyCount -= obj_sharedInspectorClass.price;
     }
     
-    else if obj_sharedInspectorClass.itemIndex == 3  
+    else if obj_sharedInspectorClass.itemIndex == 3 && scr_deduct_money(obj_sharedInspectorClass.price)
     {
         global.n9500PistolQuantity++;
-        global.moneyCount -= obj_sharedInspectorClass.price;
     }
     
-    else if obj_sharedInspectorClass.itemIndex == 4  
+    else if obj_sharedInspectorClass.itemIndex == 4 && scr_deduct_money(obj_sharedInspectorClass.price)
     {
         global.lmg2000Quantity++;
-        global.moneyCount -= obj_sharedInspectorClass.price;
     }
     
-    else if obj_sharedInspectorClass.itemIndex == 5  
+    else if obj_sharedInspectorClass.itemIndex == 5 && scr_deduct_money(obj_sharedInspectorClass.price)
     {
         global.hks2050Quantity++;
-        global.moneyCount -= obj_sharedInspectorClass.price;
     }
     
-    else if obj_sharedInspectorClass.itemIndex == 6  
+    else if obj_sharedInspectorClass.itemIndex == 6 && scr_deduct_money(obj_sharedInspectorClass.price)
     {
         global.m60Quantity++;
-        global.moneyCount -= obj_sharedInspectorClass.price;
     }
 
 }
@@ -404,46 +342,39 @@ if obj_black_market_shop_gui_upper_piece.currentPage == 5   //Pistols & LMG
 
 if obj_black_market_shop_gui_upper_piece.currentPage == 6   //SHOTGUNS
 {
-    if obj_sharedInspectorClass.itemIndex == 0  
+    if obj_sharedInspectorClass.itemIndex == 0 && scr_deduct_money(obj_sharedInspectorClass.price)
     {
         global.combat_shotgunQuantity++;
-        global.moneyCount -= obj_sharedInspectorClass.price;
     }
     
-    else if obj_sharedInspectorClass.itemIndex == 1  
+    else if obj_sharedInspectorClass.itemIndex == 1 && scr_deduct_money(obj_sharedInspectorClass.price)
     {
         global.sawed_off_shotgunQuantity++;
-        global.moneyCount -= obj_sharedInspectorClass.price;
     }
     
-    else if obj_sharedInspectorClass.itemIndex == 2 
+    else if obj_sharedInspectorClass.itemIndex == 2 && scr_deduct_money(obj_sharedInspectorClass.price)
     {
         global.assault_shotgunQuantity++;
-        global.moneyCount -= obj_sharedInspectorClass.price;
     }
     
-    else if obj_sharedInspectorClass.itemIndex == 3  
+    else if obj_sharedInspectorClass.itemIndex == 3 && scr_deduct_money(obj_sharedInspectorClass.price)
     {
         global.long_range_shotgunQuantity++;
-        global.moneyCount -= obj_sharedInspectorClass.price;
     }
     
-    else if obj_sharedInspectorClass.itemIndex == 4  
+    else if obj_sharedInspectorClass.itemIndex == 4 && scr_deduct_money(obj_sharedInspectorClass.price)
     {
         global.spez_12_shotgunQuantity++;
-        global.moneyCount -= obj_sharedInspectorClass.price;
     }
     
-    else if obj_sharedInspectorClass.itemIndex == 5  
+    else if obj_sharedInspectorClass.itemIndex == 5 && scr_deduct_money(obj_sharedInspectorClass.price)
     {
         global.standard_hunting_rifleQuantity++;
-        global.moneyCount -= obj_sharedInspectorClass.price;
     }
     
-    else if obj_sharedInspectorClass.itemIndex == 6  
+    else if obj_sharedInspectorClass.itemIndex == 6 && scr_deduct_money(obj_sharedInspectorClass.price)
     {
         global.powerful_hunting_rifleQuantity++;
-        global.moneyCount -= obj_sharedInspectorClass.price;
     }
 }
 
@@ -451,34 +382,29 @@ if obj_black_market_shop_gui_upper_piece.currentPage == 6   //SHOTGUNS
 
 if obj_black_market_shop_gui_upper_piece.currentPage == 7   //SNIPERS
 {
-    if obj_sharedInspectorClass.itemIndex == 0  
+    if obj_sharedInspectorClass.itemIndex == 0 && scr_deduct_money(obj_sharedInspectorClass.price)
     {
         global.pipe_sniperQuantity++;
-        global.moneyCount -= obj_sharedInspectorClass.price;
     }
     
-    else if obj_sharedInspectorClass.itemIndex == 1  
+    else if obj_sharedInspectorClass.itemIndex == 1 && scr_deduct_money(obj_sharedInspectorClass.price)
     {
         global.bolt_action_sniperQuantity++;
-        global.moneyCount -= obj_sharedInspectorClass.price;
     }
     
-    else if obj_sharedInspectorClass.itemIndex == 2  
+    else if obj_sharedInspectorClass.itemIndex == 2 && scr_deduct_money(obj_sharedInspectorClass.price)
     {
         global.tactical_sniperQuantity++;
-        global.moneyCount -= obj_sharedInspectorClass.price;
     }
     
-    else if obj_sharedInspectorClass.itemIndex == 3  
+    else if obj_sharedInspectorClass.itemIndex == 3 && scr_deduct_money(obj_sharedInspectorClass.price)
     {
         global.marksman_sniperQuantity++;
-        global.moneyCount -= obj_sharedInspectorClass.price;
     }
     
-    else if obj_sharedInspectorClass.itemIndex == 4  
+    else if obj_sharedInspectorClass.itemIndex == 4 && scr_deduct_money(obj_sharedInspectorClass.price)
     {
         global.destroyer_aw308Quantity++;
-        global.moneyCount -= obj_sharedInspectorClass.price;
     }
 }
 
@@ -486,51 +412,43 @@ if obj_black_market_shop_gui_upper_piece.currentPage == 7   //SNIPERS
 
 if obj_black_market_shop_gui_upper_piece.currentPage == 8   //THROWABLES
 {
-    if obj_sharedInspectorClass.itemIndex == 0  
+    if obj_sharedInspectorClass.itemIndex == 0 && scr_deduct_money(obj_sharedInspectorClass.price)
     {
         global.c4Quantity++;
-        global.moneyCount -= obj_sharedInspectorClass.price;
     }
     
-    if obj_sharedInspectorClass.itemIndex == 1  
+    if obj_sharedInspectorClass.itemIndex == 1 && scr_deduct_money(obj_sharedInspectorClass.price)
     {
         global.grenadeQuantity++;
-        global.moneyCount -= obj_sharedInspectorClass.price;
     }
     
-    if obj_sharedInspectorClass.itemIndex == 2  
+    if obj_sharedInspectorClass.itemIndex == 2 && scr_deduct_money(obj_sharedInspectorClass.price)
     {
         global.motolov_cocktailsQuantity++;
-        global.moneyCount -= obj_sharedInspectorClass.price;
     }
     
-    if obj_sharedInspectorClass.itemIndex == 3  
+    if obj_sharedInspectorClass.itemIndex == 3 && scr_deduct_money(obj_sharedInspectorClass.price)
     {
         global.landmineQuantity++;
-        global.moneyCount -= obj_sharedInspectorClass.price;
     }
     
-    if obj_sharedInspectorClass.itemIndex == 4  
+    if obj_sharedInspectorClass.itemIndex == 4 && scr_deduct_money(obj_sharedInspectorClass.price)
     {
         global.claymoreQuantity++;
-        global.moneyCount -= obj_sharedInspectorClass.price;
     }
     
-    if obj_sharedInspectorClass.itemIndex == 5  
+    if obj_sharedInspectorClass.itemIndex == 5 && scr_deduct_money(obj_sharedInspectorClass.price)
     {
         global.gas_bombQuantity++;
-        global.moneyCount -= obj_sharedInspectorClass.price;
     }
     
-    if obj_sharedInspectorClass.itemIndex == 6  
+    if obj_sharedInspectorClass.itemIndex == 6 && scr_deduct_money(obj_sharedInspectorClass.price)
     {
         global.shurikenQuantity++;
-        global.moneyCount -= obj_sharedInspectorClass.price;
     }
     
-    if obj_sharedInspectorClass.itemIndex == 7  
+    if obj_sharedInspectorClass.itemIndex == 7 && scr_deduct_money(obj_sharedInspectorClass.price)
     {
         global.throwing_knifeQuantity++;
-        global.moneyCount -= obj_sharedInspectorClass.price;
     }
 }

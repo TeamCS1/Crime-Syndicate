@@ -448,7 +448,7 @@ if global.qtePerformed &gt;= 100
 }
 
 //City Boss Defeated Trophies
-if global.newYorkCityBossTierThreeIsDefeated == true &amp;&amp; earnedNewYorkCityBossDefeatedT3 == false
+if global.newYorkCityBossTierThreeIsDefeated == true &amp;&amp; global.earnedNewYorkCityBossDefeatedT3 == false
 {
     global.trophyName = "New York City Boss Defeated";
     global.trophyGradeText = "Silver";

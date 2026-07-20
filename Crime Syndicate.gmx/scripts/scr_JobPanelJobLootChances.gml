@@ -17,12 +17,21 @@ if (random(1) < 0.025)
     }
 }
 
-//5% 
+//5%
 else if (random(1) < 0.05)
-{ 
-    //drop a single weapon, armour or vehicle
-    show_debug_message("Output: Dropped a random weapon, armour or vehicle!");
-}  
+{
+    //drop two random materials or blueprints
+    global.lootTableChooseType = 0;
+    global.lootWindowLastNumberInArray = 52; //This is the last number in loot table
+    global.lootTableAmountInTableMin = 2;
+    global.lootTableAmountInTableMax = 2;
+
+    if !instance_exists(objLootTableJobsRankingGlobals)
+    {
+        instance_create(x,y,objLootTableJobsRankingGlobals);
+        show_debug_message("Output: Dropped two pieces of random loot!");
+    }
+}
 //10%
 else if (random(1) < 0.10)
 {

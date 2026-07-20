@@ -66,7 +66,7 @@
     show_debug_message("CREATE: obj_defence_protection_button");
 
     //disallow changing of screens while menu open
-    if room == rm_prologue_world_map || room == rm_city_bosses_battle_visualiser  //is new york
+    if room == rm_prologue_world_map || (room == rm_city_bosses_battle_visualiser &amp;&amp; global.currentCity == "NEW_YORK")  //is new york
     {
         with obj_worldMapNewYorkControl
         {
@@ -75,8 +75,8 @@
             show_debug_message("DESTROY: obj_worldMapNewYorkControl");
         }
     }
-    
-    else if room == rm_world_map_chicago || room == rm_city_bosses_battle_visualiser    //is chicago
+
+    else if room == rm_world_map_chicago || (room == rm_city_bosses_battle_visualiser &amp;&amp; global.currentCity == "CHICAGO")    //is chicago
     {
         with obj_worldMapChicagoControl
         {
@@ -85,8 +85,8 @@
             show_debug_message("DESTROY: obj_worldMapChicagoControl");
         }
     }
-    
-    else if room == rm_world_map_london || room == rm_city_bosses_battle_visualiser    //is london
+
+    else if room == rm_world_map_london || (room == rm_city_bosses_battle_visualiser &amp;&amp; global.currentCity == "LONDON")    //is london
     {
         with obj_worldMapLondonControl
         {
@@ -95,8 +95,8 @@
             show_debug_message("DESTROY: obj_worldMapLondonControl");
         }
     }
-    
-    else if room == rm_world_map_las_vegas || room == rm_city_bosses_battle_visualiser    //is las vegas
+
+    else if room == rm_world_map_las_vegas || (room == rm_city_bosses_battle_visualiser &amp;&amp; global.currentCity == "LAS_VEGAS")    //is las vegas
     {
         with obj_worldMapLasVegasControl
         {
