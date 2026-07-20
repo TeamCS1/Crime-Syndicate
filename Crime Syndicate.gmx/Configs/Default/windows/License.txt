@@ -1,0 +1,74 @@
+THIS END USER LICENSE/TERMS AND CONDITIONS AGREEMENT APPLIES TO ALL USE OF THIS APPLICATION.
+
+Scope
+-----
+You may:
+
+Install and use this Demo Application for personal use [provided you have paid any license fee, if this applies];
+
+You must not:
+
+copy, transfer, distribute modify, adapt, merge, translate, decompile, disassemble, or reverse engineer the Application or part of it except as expressly permitted by this Licence;
+remove, modify, or tamper with any copyright, trademark or other notice;
+use the Application for any illegal, unlawful or immoral purposes.
+
+Term
+----
+This License will end automatically if you breach any of the terms.
+When this License ends you must stop all use of the Application and destroy and erase any copies you have.
+
+Summary
+----
+You should read the full terms and conditions but here is a quick summary of some important points to help guide you - the full terms and conditions still apply though.
+
+*Our games are usually made available during development and will contain errors and bugs.
+*Do not redistribute our games or any alterations of our games or game files.
+*You may develop tools, plug-ins and services as long as they do not seem official or approved by us, such as by using our logos. Do not make commercial use of anything we've made without our permission.
+*We are trying to be open, honest and trusting with the hope that you hold us in the same regard.
+
+
+Liability
+---------
+
+YoYo Games Limited (“YoYo Games) is not involved in the creation of this Application except only that it was made using GameMaker. YoYo Games warrants only that GameMaker will function satisfactorily if used properly and on the correct operating system.
+YoYo Games does not warrant that the operation of the Appication will be uninterrupted or error free or that errors can be corrected. You install and use the Application at your own risk and in no event will YoYo Games be liable to you for any loss or damage of any kind (except personal injury or death arising from YoYo Games’ negligence) including lost profits or other consequential loss arising from the use of or inability to use the Application or from errors or deficiencies in it whether caused by negligence or otherwise.
+To the maximum extent permitted by law, YoYo Games Limited excludes liability for all warranties, conditions and other terms which but for this notice would have effect.
+
+General
+-------
+
+All copyright and other intellectual property rights in GameMaker and parts of it included in the Application belong to and vest in YoYo Games. All rights of YoYo Games are hereby asserted and reserved.
+All trade marks are the property of their respective owners and YoYo Games makes no warranty or representation in respect of and has no responsibility and excludes all liability for any trade mark or third party content.
+The rights granted in this license are non-exclusive.
+This license does not affect your statutory rights as a consumer.
+This License is governed by English Law and the parties submit to the exclusive jurisdiction of the English Courts.
+If you have a problem with this Application please contact teamcs1business@gmail.com, not YoYo Games.
+
+GDPR
+-------
+
+What is GDPR?
+
+The General Data Protection Regulation (GDPR) is a comprehensive new privacy law that gives residents of the European Union (EU) greater control over their “personal data” and requires organizations to maintain appropriate security of personal data. GDPR is an important step forward for clarifying and enabling individual privacy rights.
+
+How are TeamCS1 complying with GDPR?
+
+We are committed to making sure that our products and services comply with GDPR. We’ve made significant investments to redesign our tools, systems and processes to meet the requirements of GDPR. Today, GDPR compliance is deeply ingrained in our culture and embedded in the processes and practices that are at the heart of how we build and deliver products and services.
+
+In the Crime Syndicate application, it looks like TeamCS1 is collecting telemetry data from me. Is that true?
+
+The data collection in the Crime Syndicate application is stored locally on the user's machine. No telemetry data is sent nor stored by TeamCS1. However, the Crime Syndicate application will store gamelogs in the form of crashlogs to profile internal game logic and help diagnose possible bugs within the application. These files can only be sent by the consumer to TeamCS1 to fix bugs.
+
+How can I access my data?
+
+The data in the form of gamelogs/crashlogs can be found within the install directory.
+
+What can I expect with my data on Crime Syndicate after May 25, 2018?
+
+If TeamCS1 collects data from you, you can view that data within the install directory, which will enable you to either open, modify or delete.
+
+This END USER LICENSE/TERMS AND CONDITIONS AGREEMENT is subject to change based upon review and without notice.
+
+Last Updated: 22/04/2021
+
+Click “ACCEPT” and accept these terms to install and use this Application. If you do not accept them terms you may not continue with the installation and you must not install, use or run this software on this or any other computer.
