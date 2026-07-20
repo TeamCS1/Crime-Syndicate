@@ -142,16 +142,15 @@ obj_trips_loadout_gui.slotEntered = 4;
 if global.tripsSlot4 == "Locked" &amp;&amp; global.moneyCountMillion &gt; 1
 {
     global.moneyCountMillion -= 1;
-    global.moneyCount += 900000
-    
+
     global.tripsSlot4 = "Owned";
     global.slot4Name = "Slot 4"
     image_index = 1;
 }
 
-else if global.tripsSlot4 == "Locked" &amp;&amp; global.moneyCount &gt; 100000
+else if global.tripsSlot4 == "Locked" &amp;&amp; global.moneyCount &gt; 1000000
 {
-    global.moneyCount -= 100000
+    global.moneyCount -= 1000000
     global.tripsSlot4 = "Owned";
     global.slot4Name = "Slot 4"
     image_index = 1;
