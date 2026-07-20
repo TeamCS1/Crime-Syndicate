@@ -53,86 +53,86 @@ ratingListTwo = "loading";
           <argument>
             <kind>1</kind>
             <string>///Rating system V2
-if global.jobFiveBarChicago &gt;= 100 &amp;&amp; global.jobFiveBarRankChicago != 6
+if global.jobFiveBarLondon &gt;= 100 &amp;&amp; global.jobFiveBarRankLondon != 6
 {
-    global.jobFiveBarRankChicago += 1;
-    global.jobFiveBarChicago = 0;
+    global.jobFiveBarRankLondon += 1;
+    global.jobFiveBarLondon = 0;
 }
 
-if global.jobFiveBarRankChicago == 0
+if global.jobFiveBarRankLondon == 0
 {
     ratingListOne = "F";
 }
 
-else if global.jobFiveBarRankChicago == 1
+else if global.jobFiveBarRankLondon == 1
 {
     ratingListOne = "E";
 }
 
-else if global.jobFiveBarRankChicago == 2
+else if global.jobFiveBarRankLondon == 2
 {
     ratingListOne = "D";
 }
 
-else if global.jobFiveBarRankChicago == 3
+else if global.jobFiveBarRankLondon == 3
 {
     ratingListOne = "C";
 }
 
-else if global.jobFiveBarRankChicago == 4
+else if global.jobFiveBarRankLondon == 4
 {
     ratingListOne = "B";
 }
 
-else if global.jobFiveBarRankChicago == 5
+else if global.jobFiveBarRankLondon == 5
 {
     ratingListOne = "A";
 }
 
-else if global.jobFiveBarRankChicago == 6
+else if global.jobFiveBarRankLondon == 6
 {
     ratingListOne = "S";
 }
 
 //page 2 section only
 
-if global.jobTenBarChicago &gt;= 100 &amp;&amp; global.jobTenBarRankChicago != 6
+if global.jobTenBarLondon &gt;= 100 &amp;&amp; global.jobTenBarRankLondon != 6
 {
-    global.jobTenBarRankChicago += 1;
-    global.jobTenBarChicago = 0;
+    global.jobTenBarRankLondon += 1;
+    global.jobTenBarLondon = 0;
 }
 
-if global.jobTenBarRankChicago == 0
+if global.jobTenBarRankLondon == 0
 {
     ratingListTwo = "F";
 }
 
-else if global.jobTenBarRankChicago == 1
+else if global.jobTenBarRankLondon == 1
 {
     ratingListTwo = "E";
 }
 
-else if global.jobTenBarRankChicago == 2
+else if global.jobTenBarRankLondon == 2
 {
     ratingListTwo = "D";
 }
 
-else if global.jobTenBarRankChicago == 3
+else if global.jobTenBarRankLondon == 3
 {
     ratingListTwo = "C";
 }
 
-else if global.jobTenBarRankChicago == 4
+else if global.jobTenBarRankLondon == 4
 {
     ratingListTwo = "B";
 }
 
-else if global.jobTenBarRankChicago == 5
+else if global.jobTenBarRankLondon == 5
 {
     ratingListTwo = "A";
 }
 
-else if global.jobTenBarRankChicago == 6
+else if global.jobTenBarRankLondon == 6
 {
     ratingListTwo = "S";
 }
