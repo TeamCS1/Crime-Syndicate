@@ -75,7 +75,7 @@ y = 249;
 calculateCosts = 0;
 calculateCosts = (global.rentCostSlotsTotals + global.agencyTotalFeeEquippedFinalise + global.distanceFee)
 
-if global.rentCostSlotsTotals &lt;= 0 
+if global.rentCostSlotsTotals &lt; 25000
 {
     customCol = c_red;
 }

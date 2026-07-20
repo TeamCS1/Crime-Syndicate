@@ -101,12 +101,12 @@ if string_pos("(Legendary)", global.sectionThreeName) != 0
 //Based on the difficulties given to us, we need to be generous with xp
 //Since there are a chance of legendaries, we have to calculate it.
 
-if global.hitmenXPChanceSectionThree == 0 //Hard
+if global.hitmenDiffultyChanceSectionThree == 0 //Hard
 {
-    global.hitmenXPChanceSectionThree += irandom_range(global.currentPlayerLevel, (global.currentPlayerLevel * 3.0));   
+    global.hitmenXPChanceSectionThree += irandom_range(global.currentPlayerLevel, (global.currentPlayerLevel * 3.0));
 }
 
-else if global.hitmenXPChanceSectionThree == 1 //Extra Hard
+else if global.hitmenDiffultyChanceSectionThree == 1 //Extra Hard
 {
     global.hitmenXPChanceSectionThree += irandom_range(global.currentPlayerLevel, (global.currentPlayerLevel * 5.0));   
 }

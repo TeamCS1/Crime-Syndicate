@@ -164,7 +164,7 @@ onClickFlee = true;
 
 if onClickFlee == true
 {
-    if global.moneyCount &gt; fleeFee || global.moneyCountMillion &gt; 0
+    if global.moneyCount &gt;= fleeFee || global.moneyCountMillion &gt; 0
     {
         //paying with millions
         if global.moneyCount &lt; fleeFee
@@ -177,7 +177,7 @@ if onClickFlee == true
         }
 
         //paying without limit break
-        else if global.moneyCount &gt; fleeFee
+        else if global.moneyCount &gt;= fleeFee
         {
             global.moneyCount -= fleeFee
             scr_cityBossesMenuCleanup();

@@ -91,12 +91,12 @@ else if global.hitmenDiffultyChanceSectionTwo == 1
 //Based on the difficulties given to us, we need to be generous with xp
 //Since there are 0% chance of legendaries, don't bother calculating it.
 
-if global.hitmenXPChanceSectionTwo == 0 //Normal
+if global.hitmenDiffultyChanceSectionTwo == 0 //Normal
 {
-    global.hitmenXPChanceSectionTwo += irandom_range(global.currentPlayerLevel, (global.currentPlayerLevel * 2.0));   
+    global.hitmenXPChanceSectionTwo += irandom_range(global.currentPlayerLevel, (global.currentPlayerLevel * 2.0));
 }
 
-else if global.hitmenXPChanceSectionTwo == 1 //Hard
+else if global.hitmenDiffultyChanceSectionTwo == 1 //Hard
 {
     global.hitmenXPChanceSectionTwo += irandom_range(global.currentPlayerLevel, (global.currentPlayerLevel * 3.0));   
 }

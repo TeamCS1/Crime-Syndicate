@@ -1236,8 +1236,8 @@ if global.currentNewYorkCityBossBarMultiplierTierOne &gt;= 100
 
 if finisherMove == true
 {
-    floor(trophyCalculation = 30 * global.healthCountMax / 100)
-    
+    trophyCalculation = floor(30 * global.healthCountMax / 100);
+
     if trophyCalculation &gt;= global.healthCount
     {
         global.trophyName = "On the Verge of Death";

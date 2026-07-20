@@ -1,15 +1,17 @@
 //Here we list 10%, 5% and 2.5 loot odds chances
 randomize();
 
+var _lootRoll = random(1);
+
 //2.5%
-if (random(1) < 0.025) 
-{ 
+if (_lootRoll < 0.025)
+{
     //drop a single magazine from 0 to 100
     global.lootTableChooseType = 10;
     global.lootTableAmountInTableMin = 1;
     global.lootTableAmountInTableMax = 1;
     global.lootWindowLastNumberInArray = 0; //This is the last number in loot table
-    
+
     if !instance_exists(objLootTableJobsRankingGlobals)
     {
         instance_create(x,y,objLootTableJobsRankingGlobals);
@@ -18,7 +20,7 @@ if (random(1) < 0.025)
 }
 
 //5%
-else if (random(1) < 0.05)
+else if (_lootRoll < 0.05)
 {
     //drop two random materials or blueprints
     global.lootTableChooseType = 0;
@@ -33,7 +35,7 @@ else if (random(1) < 0.05)
     }
 }
 //10%
-else if (random(1) < 0.10)
+else if (_lootRoll < 0.10)
 {
     global.lootTableChooseType = 0;
     global.lootWindowLastNumberInArray = 52; //This is the last number in loot table
