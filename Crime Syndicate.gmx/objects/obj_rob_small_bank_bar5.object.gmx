@@ -135,7 +135,7 @@ else if global.jobFiveBarRankNewYork == 6
     ratingListOne = "S";
 }
 
-if global.jobFiveBarNewYork &gt;= 98 &amp;&amp; global.jobFiveBarNewYork &lt;=99
+if global.jobFiveBarNewYork &gt;= 98 &amp;&amp; global.jobFiveBarNewYork &lt;=99 &amp;&amp; ratingListOne == "A"
 {
     scr_JobsRankingDropTables(1,7,7,8);
     scr_log_message(scr_DebugDate() + "OUTPUT: Dropped Ranked Loot S");
@@ -234,7 +234,7 @@ else if global.jobTenBarRankNewYork == 6
     ratingListTwo = "S";
 }
 
-if global.jobTenBarNewYork &gt;= 98 &amp;&amp; global.jobTenBarNewYork &lt;=99
+if global.jobTenBarNewYork &gt;= 98 &amp;&amp; global.jobTenBarNewYork &lt;=99 &amp;&amp; ratingListTwo == "A"
 {
     scr_JobsRankingDropTables(1,7,7,8);
     scr_log_message(scr_DebugDate() + "OUTPUT: Dropped Ranked Loot S");

@@ -188,7 +188,7 @@ else if obj_black_market_trips_agents_panel_gui.mouseEnterCurrentPage == 2
         scr_GenerateEmployee();
     }
     
-    else if global.slot12Status &amp;&amp; global.moneyCountMillion &gt; 0
+    else if global.slot12Status == "EMPTY" &amp;&amp; global.moneyCountMillion &gt; 0
     {
         global.moneyCountMillion -= 1;
         global.moneyCount += 1000000;

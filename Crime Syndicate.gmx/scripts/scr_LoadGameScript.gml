@@ -230,7 +230,7 @@ if os_browser == browser_not_a_browser
     global.slotPrice = ini_read_real("blackmarket", "slotPrice", 10000);
     global.clanParts = ini_read_real("blackmarket", "clanParts", 0);
     global.tripsStorageMaximum = ini_read_real("blackmarket", "tripsStorageMaximum", 100);
-    global.agencyLevelHub = ini_read_real("blackmarket", "global.agencyLevelHub", 0);
+    global.agencyLevelHub = ini_read_real("blackmarket", "agencyLevelHub", 0);
     global.agencyLevelHubPoints = ini_read_real("blackmarket", "agencyLevelHubPoints", 25);
 
     global.slot1Status = ini_read_string("blackmarket", "slot1Status", "EMPTY");
