@@ -101,7 +101,7 @@ y = obj_trips_loadout_gui.y + 5
             <kind>1</kind>
             <string>scr_CalculateApplyEquippedTripsLoadoutState();
 
-if instance_exists(obj_trip_upgrades_button_trigger)
+if !instance_exists(obj_trip_upgrades_button_trigger)
 {
     instance_create(x,y,obj_trip_upgrades_button_trigger);
 }
