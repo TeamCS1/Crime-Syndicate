@@ -138,18 +138,19 @@ window_set_cursor(cr_handpoint);
             <string>toDraw = true;
 alpha = 1.0;
 beginCountdown = false;
+tripStartedSuccessfully = false;
 
 //Calculate Trip prices
 calculation = 0;
 calculation = (global.rentCostSlotsTotals + global.agencyTotalFeeEquippedFinalise + global.distanceFee);
 
-if global.moneyCount &gt;= calculation &amp;&amp; global.rentCostSlotsTotals &gt;= 25000 &amp;&amp; global.agencyTotalEquipped &gt;= 1 &amp;&amp; obj_black_market_trips_finalise.loadoutIsTicked == true &amp;&amp; obj_black_market_trips_finalise.AgencyIsTicked == true 
+if global.rentCostSlotsTotals &gt;= 25000 &amp;&amp; global.agencyTotalEquipped &gt;= 1 &amp;&amp; obj_black_market_trips_finalise.loadoutIsTicked == true &amp;&amp; obj_black_market_trips_finalise.AgencyIsTicked == true &amp;&amp; scr_deduct_money(calculation)
 {
 
-    global.moneyCount -= calculation;
-    show_debug_message("Taken out: " + string(calculation))   
-         
-    
+    tripStartedSuccessfully = true;
+    show_debug_message("Taken out: " + string(calculation))
+
+
     //Which trip to start
     if global.tripOneActive == false
     {
@@ -316,7 +317,7 @@ window_set_cursor(cr_default);
             <kind>1</kind>
             <string>
 //When closing the menu
-if instance_exists(obj_black_market_trips_finalise) &amp;&amp; global.moneyCount &gt;= calculation &amp;&amp; global.rentCostSlotsTotals &gt;= 25000 &amp;&amp; global.agencyTotalEquipped &gt;= 1
+if instance_exists(obj_black_market_trips_finalise) &amp;&amp; tripStartedSuccessfully == true
 {
     with obj_black_market_trips_finalise
     {
