@@ -97,6 +97,13 @@ while (r >= 1000000) {
     r -= 1000000;
 }
 
+// The HUD/save format keeps all sub-billion cash in global.moneyCount. Only keep
+// moneyCountMillion split out while there is at least one billion to display.
+if (b <= 0) {
+    r += m * 1000000;
+    m = 0;
+}
+
 show_debug_message("Final money: " + string(b) + "B " + string(m) + "M " + string(r));
 
 global.moneyCountBillion = b;
