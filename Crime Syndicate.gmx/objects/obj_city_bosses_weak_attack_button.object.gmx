@@ -150,7 +150,7 @@ ranVariancePlayer = 0;
     }
     
     //CHICAGO
-    if global.chicagoOnJob == "citybosses_CHICAGO"
+    if global.chicagoOnJob == "citybosses_chicago"
     {
         //Chicago - Tier 1
         if global.currentChicagoCityBossBarTierOneCount &lt;= 1
@@ -212,7 +212,7 @@ ranVariancePlayer = 0;
     }
     
     //London
-    if global.londonOnJob == "citybosses_LONDON"
+    if global.londonOnJob == "citybosses_london"
     {
         //London - Tier 1
         if global.currentLondonCityBossBarTierOneCount &lt;= 1
@@ -274,7 +274,7 @@ ranVariancePlayer = 0;
     }
     
     //Las Vegas
-    if global.lasVegasOnJob == "citybosses_LAS_VEGAS"
+    if global.lasVegasOnJob == "citybosses_lasvegas"
     {
         //Las Vegas - Tier 1
         if global.currentLasVegasCityBossBarTierOneCount &lt;= 1

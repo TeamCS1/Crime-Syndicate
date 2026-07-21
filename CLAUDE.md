@@ -64,7 +64,7 @@ GameMaker Studio 1.4 is used locally to compile and test the project. When compi
 
 ## Known Bugs (Full Codebase Review)
 
-Exhaustive review of all 278 objects (`objects/*.object.gmx`) and all 75 scripts (`scripts/*.gml`), conducted via 10 parallel deep-dive passes. **Totals: 6 Major, 39 Medium, 74 Minor open — 119 open, 24 fixed.** (Five additional findings — `obj_black_market_main_contracts_button.object.gmx` and `obj_black_market_main_statistics_button.object.gmx` missing click events, `scr_CreateOptions.gml`'s unconditional debug-button creation, the `instance_destroy(id, execute_event)` two-argument form flagged in `obj_enter.object.gmx`, and `scr_deduct_money.gml` only ever setting `moneySuffix` to `"Billion"` or `""` — were reviewed and confirmed to be intentional/unimplemented functionality or a false positive rather than bugs, and removed from this list.) When a bug below is fixed, move its entry to the Completed / Patch Notes section below with a short note on the fix, rather than deleting it.
+Exhaustive review of all 278 objects (`objects/*.object.gmx`) and all 75 scripts (`scripts/*.gml`), conducted via 10 parallel deep-dive passes. **Totals: 6 Major, 34 Medium, 74 Minor open — 114 open, 26 fixed.** (Seven additional findings — `obj_black_market_main_contracts_button.object.gmx` and `obj_black_market_main_statistics_button.object.gmx` missing click events, `scr_CreateOptions.gml`'s unconditional debug-button creation, the `instance_destroy(id, execute_event)` two-argument form flagged in `obj_enter.object.gmx`, `scr_deduct_money.gml` only ever setting `moneySuffix` to `"Billion"` or `""`, `objLootWindow.object.gmx`'s commented-out Mouse Wheel scroll-move line, and `objGreed.object.gmx`/`objNeed.object.gmx`'s commented-out Mouse Left Pressed body — were reviewed and confirmed to be intentional/unimplemented functionality or a false positive rather than bugs, and removed from this list.) When a bug below is fixed, move its entry to the Completed / Patch Notes section below with a short note on the fix, rather than deleting it.
 
 ### Major (6)
 
@@ -77,15 +77,12 @@ Exhaustive review of all 278 objects (`objects/*.object.gmx`) and all 75 scripts
 - **[obj_inventory_weapon.object.gmx, Step event]** — `if selectedValue == 23` compares a string against the real number 23 once the player has clicked any weapon in the list (`selectedValue` becomes e.g. `"Pistol"` in the Draw event). GML 1.4 throws a type-mismatch runtime error comparing String to Real, crashing the game on the very next Step after any selection. (The `list[pos]` inside that block is also broken independently — `pos` is a `var` local to the Draw event's for-loop and doesn't exist in the Step event.)
 - **[obj_city_bosses_tier_one_button.object.gmx / tier_two_button.object.gmx / tier_three_button.object.gmx, Left-Click event, Chicago block, "Checks what City..." action]** — Code reads `if instance_exists(obj_worldMapChicagoControl)` but then does `with obj_worldMapNewYorkControl { instance_destroy(); }` — destroying the wrong city's controller object, repeated identically in all three tier-button files. Starting a Chicago boss battle never destroys `obj_worldMapChicagoControl`, so the player can still interact with the world map / switch cities mid-Chicago-boss-battle.
 
-### Medium (39)
+### Medium (34)
 
 *Visibly wrong behavior that doesn't crash: wrong city's data, incorrect calculations, broken secondary features.*
 
 - **[obj_STATUS_BARS_HUD.object.gmx, Draw GUI event]** — HEALTH/STAMINA/XP-bar draw blocks guard with `if room_get_name(room) != "rm_options_main" || room_get_name(room) != "rm_progression"` — `||` instead of `&&`, so this is always true (tautology) and the bars draw in rooms they were meant to hide in, unlike CASH which correctly uses `&&`.
 - **[obj_TEXTURE_NEW_YORK_PAGE1_2.object.gmx, Create event]** — Only the New York texture object's Create event mutates *other* cities' state (`global.chicagoOnJob = "list1"`, etc, flagged by the dev's own comment). Visiting New York's job panel silently resets Chicago/London/Las Vegas's job-tab selection.
-- **[objGreed.object.gmx / objNeed.object.gmx, Mouse Left Pressed event]** — Entire body wrapped in an unterminated `/* ...` block comment, so clicking a greed/need icon executes no code; Draw events also offset roll-number text off-screen. The entire greed/need loot-distribution mini-game is non-functional.
-- **[objLootWindow.object.gmx, Mouse Wheel Up/Down events]** — The line that actually moves the window is commented out; scrolling never moves the loot window despite the on-screen instruction.
-- **[obj_JobListButtons1NewYork.object.gmx / obj_JobListButtons2NewYork.object.gmx, depth]** — `depth = -1` vs `-10` for the other three cities' identical UI.
 - **[obj_TEXTURE_LAS_VEGAS_PAGE1_2.object.gmx, depth]** — `depth = -1` vs `0` for Chicago/London/New York equivalents.
 - **[obj_black_market_shop_gui_dropdown_vehicles.object.gmx, Left Released]** — Never destroys `obj_black_market_shop_button_outfits` on selection (unlike `dropdown_weapons`'s handler); Armour → Vehicles leaves a stale Outfits button overlapping the view.
 - **[obj_black_market_shop_button_shop.object.gmx, Left Released]** — Never destroys `obj_black_market_shop_button_outfits` when switching to Shop; leaves Outfits stuck on screen.
@@ -97,7 +94,6 @@ Exhaustive review of all 278 objects (`objects/*.object.gmx`) and all 75 scripts
 - **[obj_city_bosses_tier_two_button.object.gmx, Left-Click, Chicago/London/Las Vegas blocks]** — Tier 2 combat stats are byte-identical to each city's own Tier 1 stats (only New York's Tier 2 actually differs); the "Intermediate" tier is exactly as easy as Tier 1 for 3 of 4 cities.
 - **[obj_city_bosses_menu.object.gmx, Draw events for Chicago/London/Las Vegas]** — Hardcoded ATK/DEF numbers shown in the panel don't match the real combat stats set by the tier buttons for 10 of 12 city/tier combinations.
 - **[obj_city_bosses_special_moves_signature_move_filter.object.gmx, Mouse-Enter event]** — Hover tooltip always checks New York's Tier 1 boss-health globals regardless of `global.currentCity` or tier actually in battle.
-- **[obj_city_bosses_weak_attack_button.object.gmx, Mouse-Enter event]** — Tooltip checks `global.chicagoOnJob == "citybosses_CHICAGO"` etc. (uppercase) but the values actually set are lowercase (`"citybosses_london"`); the tooltip never renders correctly for Chicago/London/Las Vegas.
 - **[obj_city_bosses_particles.object.gmx, Create event]** — `global.Sname = part_system_create();` with no Destroy event or `part_system_destroy()` anywhere; every instantiation orphans/leaks the previous particle system.
 - **[obj_city_bosses_weak_attack_button.object.gmx / power_attack_button.object.gmx, Left-Click event]** — Attack gated on `Count != 1`, but large random damage rolls almost always skip past the exact value 1, so weak/power attacks stay usable on a "dead" boss indefinitely instead of forcing the Final Blow finisher.
 - **[obj_hitmen_sectionThree.object.gmx, Draw GUI event]** — AI healthbar text uses the 0–100 percentage variable instead of the actual HP variable as numerator, producing mismatched-scale numbers (e.g. "100000 / 170000" at full health).
@@ -117,7 +113,6 @@ Exhaustive review of all 278 objects (`objects/*.object.gmx`) and all 75 scripts
 - **[scrDrawText.gml, line 15]** — `draw_set_halign(_align)` is never reset afterward, bleeding alignment state into later unrelated draw calls in the same frame.
 - **[scr_CreateTripsLootCities.gml, line 8]** — Only the Bristol destination block sets a non-default loot-window position; all 8 other UK destinations use a different position than intended.
 - **[scr_LoadGameScript.gml, "citybosses" section]** — `global.cityBossNameTierOne/Two/Three` and `global.cityBossesMult` are never read by any load path; they silently reset to defaults every load.
-- **[scr_number_sep.gml, lines 11-19]** — Thousands-separator grouping mishandles the leading `-` sign for certain negative-number digit counts, producing e.g. `"-,123,456"` instead of `"-123,456"`.
 - **[scr_SaveWeb.gml / scr_save_script.gml, lines 427-441]** — The web save-export builds one comma-separated string from many unescaped free-form fields; a field containing a literal comma would shift and corrupt every subsequent field on import (acknowledged in the code's own comment as "the worst export ever").
 
 ### Minor (74)
@@ -202,6 +197,7 @@ Not bugs — deferred feature work. These were pulled out of Known Bugs because 
 
 - **[obj_options_menu.object.gmx, Draw GUI, `optionsIndex == 0`]** — "Light Theme"/"English" are hardcoded literals instead of reading `global.themeType` or a language global. Needs an actual theme/language system built before this can read live state.
 - **[scr_DebugConsole.gml, lines 115-123]** — `/theme 0`/`/theme 1` assign to an unqualified local `themeType` instead of `global.themeType`, so the command silently does nothing. Same dependency as above — worth revisiting once a real theme system exists.
+- **[scr_number_sep.gml, lines 11-19]** — Thousands-separator grouping mishandles the leading `-` sign for certain negative-number digit counts, producing e.g. `"-,123,456"` instead of `"-123,456"`. Cosmetic edge case on negative-money display; deferred rather than fixed now.
 
 ## Completed / Patch Notes
 
@@ -237,6 +233,8 @@ Bugs found via manual testing/report (outside the original 150-item automated re
 - [2026-07-21] Fixed the native save/load city mismatch (`scr_save_script.gml`/`scr_LoadGameScript.gml`) — the save wrote `global.currentCity` under the ini section `"Checker"`, but the load read it back from `"Checkers"` (a different section), so the saved city could never be restored and always fell back to `"NEW_YORK"` on load, potentially running city-dependent boss/menu/cleanup/world-map logic against the wrong city's state after loading. Changed the load to read from `"Checker"` to match the write.
 - [2026-07-21] Fixed the Trips Agents cost-display formatting inconsistency (`obj_black_market_trips_agents_pop_up_stats.object.gmx`) — only the Slot 1/page 1 block formatted the "Agent Generate Cost" line with `"$" + scr_number_sep(...)`; the other 17 slot/page blocks (slots 2-18) just drew the raw number. Updated all 17 to match Slot 1's formatting for parity.
 - [2026-07-21] Fixed three cosmetic/dev-only leftovers: `scr_SharedInspectorArmourQuantities.gml`'s page-1 comment said `//Melee weapons` instead of `//Armour`; `scr_SharedInspectorAutomaticsQuantities.gml` was missing a trailing semicolon on the `asVal9RifleQuantity` assignment; `scr_UpgradeStatsMenuCloseFunction.gml`'s London `with` block logged `"obj_TEXTURE_LAS_VEGAS_PAGE1_2 alpha set to 255."` instead of the London object's own name. All three corrected.
+- [2026-07-21] Fixed New York's job-list buttons drawing at the wrong depth (`obj_JobListButtons1NewYork.object.gmx`, `obj_JobListButtons2NewYork.object.gmx`) — both had `depth = -1` while the identical Chicago/London/Las Vegas UI uses `depth = -10`. Changed both to `-10` to match.
+- [2026-07-21] Fixed the city-boss weak-attack tooltip never rendering for Chicago, London, or Las Vegas (`obj_city_bosses_weak_attack_button.object.gmx`) — the Mouse-Enter tooltip compared `global.chicagoOnJob`/`londonOnJob`/`lasVegasOnJob` against uppercase literals (`"citybosses_CHICAGO"`, `"citybosses_LONDON"`, `"citybosses_LAS_VEGAS"`), but the globals are actually only ever set to lowercase values (`"citybosses_chicago"`, `"citybosses_london"`, `"citybosses_lasvegas"`) by each city's boss button. Corrected all three literals to match the real lowercase values.
 
 ## itch.io Patch Notes
 
@@ -269,3 +267,5 @@ Player-facing changelog, one line per fix, newest last — copy straight into an
 - Fixed the Trip Confirm screen not explaining why you were blocked when your transport combo was below the minimum cost.
 - Fixed your current city not being remembered between play sessions.
 - Fixed the Trips Agents cost display not formatting the price consistently across all slots.
+- Fixed New York's job list buttons rendering at the wrong depth compared to other cities.
+- Fixed the city boss weak-attack tooltip never showing up correctly for Chicago, London, or Las Vegas.
