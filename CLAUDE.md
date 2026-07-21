@@ -227,6 +227,11 @@ Bugs fixed from the list above get moved here. Format: `- [YYYY-MM-DD] Fixed <sh
 - [2026-07-20] Fixed unreachable "Hard"/"Extra Hard" hitmen XP multipliers (`obj_hitmen_sectionTwo.object.gmx`, `obj_hitmen_sectionThree.object.gmx`) — the XP-scaling branches checked `global.hitmenXPChanceSectionTwo`/`Three` (the XP accumulator itself, always `0` at that point) instead of `global.hitmenDiffultyChanceSectionTwo`/`Three` (the actual difficulty roll), so Hard/Extra-Hard hitmen always got the same XP as Normal/Hard. Corrected both checks to reference the difficulty-roll globals.
 - [2026-07-20] Fixed skewed job loot-drop probabilities (`scr_JobPanelJobLootChances.gml`) — each of the three tiers called `random(1)` independently instead of sharing one roll, so reaching the 5%/10% branches required multiple independent rolls to succeed in sequence, understating their real odds. Rolled once into a local `_lootRoll` and compared that same value against all three thresholds.
 
+Bugs found via manual testing/report (outside the original 150-item automated review, so not counted in the Known Bugs totals above):
+
+- [2026-07-20] Fixed hitmen bounty inflation from `global.currentPlayerLevelUpperBound` growing without bound (`obj_hitmen_sectionOne.object.gmx`, `obj_hitmen_sectionTwo.object.gmx`, `obj_hitmen_sectionThree.object.gmx`) — the shared global started at `-1` and every hitmen calculation in all three sections did `global.currentPlayerLevelUpperBound += irandom_range(...)` instead of resetting it, so it grew permanently across every hitman ever generated in any section, inflating later bounty rolls (`hitmenBounty += irandom_range(currentPlayerLevel, currentPlayerLevelUpperBound * 1.5)`) far beyond intended level scaling the longer a session ran. Changed all three `+=` to `=` so the upper bound is assigned fresh for each calculation instead of accumulating.
+- [2026-07-20] Fixed the hitman victory screen always showing Section One's bounty/XP regardless of which section was actually defeated (`obj_hitman_killed_GUI.object.gmx`) — the Create event correctly identified the defeated hitman's name/title per section, but the Draw GUI event hardcoded `global.hitmenBounty`/`global.hitmenXPChance` (Section One's globals) instead of reading the matching Section Two/Three reward globals. Added `bountyToDisplay`/`xpToDisplay` locals set alongside `nameToDisplay`/`titleToDisplay` in the Create event, and draw those instead.
+
 ## itch.io Patch Notes
 
 Player-facing changelog, one line per fix, newest last — copy straight into an itch.io devlog/update post. Add a new line here whenever an entry is added to Completed / Patch Notes above.
@@ -250,3 +255,5 @@ Player-facing changelog, one line per fix, newest last — copy straight into an
 - Fixed the city boss Flee button giving inconsistent results when you had exactly enough money.
 - Fixed Hard and Extra Hard hitmen not giving the bonus XP they were supposed to.
 - Fixed job loot drop odds being lower than intended.
+- Fixed hitmen bounties inflating the longer you played instead of scaling properly with your level.
+- Fixed the hitman victory screen always showing the wrong bounty and XP reward.

@@ -102,7 +102,7 @@ else if global.hitmenDiffultyChanceSectionTwo == 1 //Hard
 }
 
 //This section, scales the AI to the player's lower and upperbound.
-global.currentPlayerLevelUpperBound += irandom_range(global.currentPlayerLevel, global.currentPlayerLevel + 10);
+global.currentPlayerLevelUpperBound = irandom_range(global.currentPlayerLevel, global.currentPlayerLevel + 10);
 global.hitmenBountySectionTwo += irandom_range(global.currentPlayerLevel, (global.currentPlayerLevelUpperBound * 1.5));
 global.hitmenBountySectionTwo *= global.currentPlayerLevel * 2.0
 

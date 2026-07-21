@@ -110,7 +110,7 @@ else if global.hitmenDiffultyChance == 3 //Normal
 }
 
 //Calculate money
-global.currentPlayerLevelUpperBound += irandom_range(global.currentPlayerLevel - 5, global.currentPlayerLevel + 10);
+global.currentPlayerLevelUpperBound = irandom_range(global.currentPlayerLevel - 5, global.currentPlayerLevel + 10);
 global.hitmenBounty += irandom_range(global.currentPlayerLevel, global.currentPlayerLevelUpperBound * 1.5);
 global.hitmenBounty *= global.currentPlayerLevel * global.hitmenDiffultyChance
 

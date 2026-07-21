@@ -27,24 +27,32 @@
             <kind>1</kind>
             <string>nameToDisplay = "";
 titleToDisplay = "";
+bountyToDisplay = 0;
+xpToDisplay = 0;
 
 //checks the name of the hitmen and appends it.
 if global.currentAIBar &lt;= 0
 {
     nameToDisplay = global.sectionOneName;
     titleToDisplay = global.sectionOneTitle;
+    bountyToDisplay = global.hitmenBounty;
+    xpToDisplay = global.hitmenXPChance;
 }
 
 else if global.currentAIBarSectionTwo &lt;= 0
 {
     nameToDisplay = global.sectionTwoName;
     titleToDisplay = global.sectionTwoTitle;
+    bountyToDisplay = global.hitmenBountySectionTwo;
+    xpToDisplay = global.hitmenXPChanceSectionTwo;
 }
 
 else if global.currentAIBarSectionThree &lt;= 0
 {
     nameToDisplay = global.sectionThreeName;
     titleToDisplay = global.sectionThreeTitle;
+    bountyToDisplay = global.hitmenBountySectionThree;
+    xpToDisplay = global.hitmenXPChanceSectionThree;
 }
 
 alarm[0] = room_speed * global.hitmenTimer;
@@ -138,8 +146,8 @@ draw_set_halign(fa_left);
 draw_set_valign(fa_top);
 draw_set_color(c_white);
 draw_text_ext(x + 30,y + 50,"The Player has killed: " + string(nameToDisplay)+ string(titleToDisplay), 17, 470);
-draw_text_ext(540,420,"+" + string(global.hitmenBounty),17,500);
-draw_text_ext(540,495,"+" + string(global.hitmenXPChance),17,500);
+draw_text_ext(540,420,"+" + string(bountyToDisplay),17,500);
+draw_text_ext(540,495,"+" + string(xpToDisplay),17,500);
 
 draw_text_ext(x + 70,620,"Closing menu in: " + string(countDown) + " seconds", 17, 500);
 

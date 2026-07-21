@@ -121,7 +121,7 @@ if string_pos("(Legendary)", global.sectionThreeName) != 0
 //---
 
 //This section, scales the AI to the player's lower and upperbound.
-global.currentPlayerLevelUpperBound += irandom_range(global.currentPlayerLevel, global.currentPlayerLevel + 10);
+global.currentPlayerLevelUpperBound = irandom_range(global.currentPlayerLevel, global.currentPlayerLevel + 10);
 global.hitmenBountySectionThree += irandom_range(global.currentPlayerLevel, (global.currentPlayerLevelUpperBound * 1.5));
 global.hitmenBountySectionThree *= global.currentPlayerLevel * 5.0
 
