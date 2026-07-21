@@ -174,9 +174,9 @@ else if global.currentCity == "CHICAGO"
         //If not in battle and not defeated
         global.cityBossesDifficulty = "INTERMEDIATE"
 
-        global.cityBossATK = 50
-        global.cityBossDEF = 50
-        global.cityBossAILevel = 40
+        global.cityBossATK = 100
+        global.cityBossDEF = 100
+        global.cityBossAILevel = 50
 
         ini_open("savedata.ini")
 
@@ -206,9 +206,9 @@ else if global.currentCity == "LONDON"
         //If not in battle and not defeated
         global.cityBossesDifficulty = "INTERMEDIATE"
 
-        global.cityBossATK = 100
-        global.cityBossDEF = 100
-        global.cityBossAILevel = 70
+        global.cityBossATK = 150
+        global.cityBossDEF = 150
+        global.cityBossAILevel = 80
 
         ini_open("savedata.ini")
 
@@ -238,9 +238,9 @@ else if global.currentCity == "LAS_VEGAS"
         //If not in battle and not defeated
         global.cityBossesDifficulty = "INTERMEDIATE"
 
-        global.cityBossATK = 125
-        global.cityBossDEF = 125
-        global.cityBossAILevel = 100
+        global.cityBossATK = 190
+        global.cityBossDEF = 190
+        global.cityBossAILevel = 110
 
         ini_open("savedata.ini")
 
