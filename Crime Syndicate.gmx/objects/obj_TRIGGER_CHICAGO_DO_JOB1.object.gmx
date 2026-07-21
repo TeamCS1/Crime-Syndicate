@@ -56,8 +56,8 @@ if global.chicagoOnJob == "list2" &amp;&amp; global.currentPlayerLevel &gt;= 32
     if global.staminaCount &gt;= 34 &amp;&amp; !instance_exists(objLootWindow)
     {
         global.moneyCount += 875000;
-        global.currentXP += 65
-        global.staminaCount -= 40
+        global.currentXP += 65;
+        global.staminaCount -= 34;
         
         //If the bar is less than or equal to full and the rank is not S, give completion
         if global.jobSixBarChicago &lt; 100 &amp;&amp; global.jobSixBarRankChicago &lt; 6
