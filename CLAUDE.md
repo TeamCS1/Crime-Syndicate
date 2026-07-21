@@ -64,7 +64,7 @@ GameMaker Studio 1.4 is used locally to compile and test the project. When compi
 
 ## Known Bugs (Full Codebase Review)
 
-Exhaustive review of all 278 objects (`objects/*.object.gmx`) and all 75 scripts (`scripts/*.gml`), conducted via 10 parallel deep-dive passes. **Totals: 6 Major, 39 Medium, 77 Minor open — 122 open, 21 fixed.** (Five additional findings — `obj_black_market_main_contracts_button.object.gmx` and `obj_black_market_main_statistics_button.object.gmx` missing click events, `scr_CreateOptions.gml`'s unconditional debug-button creation, the `instance_destroy(id, execute_event)` two-argument form flagged in `obj_enter.object.gmx`, and `scr_deduct_money.gml` only ever setting `moneySuffix` to `"Billion"` or `""` — were reviewed and confirmed to be intentional/unimplemented functionality or a false positive rather than bugs, and removed from this list.) When a bug below is fixed, move its entry to the Completed / Patch Notes section below with a short note on the fix, rather than deleting it.
+Exhaustive review of all 278 objects (`objects/*.object.gmx`) and all 75 scripts (`scripts/*.gml`), conducted via 10 parallel deep-dive passes. **Totals: 6 Major, 39 Medium, 74 Minor open — 119 open, 24 fixed.** (Five additional findings — `obj_black_market_main_contracts_button.object.gmx` and `obj_black_market_main_statistics_button.object.gmx` missing click events, `scr_CreateOptions.gml`'s unconditional debug-button creation, the `instance_destroy(id, execute_event)` two-argument form flagged in `obj_enter.object.gmx`, and `scr_deduct_money.gml` only ever setting `moneySuffix` to `"Billion"` or `""` — were reviewed and confirmed to be intentional/unimplemented functionality or a false positive rather than bugs, and removed from this list.) When a bug below is fixed, move its entry to the Completed / Patch Notes section below with a short note on the fix, rather than deleting it.
 
 ### Major (6)
 
@@ -120,7 +120,7 @@ Exhaustive review of all 278 objects (`objects/*.object.gmx`) and all 75 scripts
 - **[scr_number_sep.gml, lines 11-19]** — Thousands-separator grouping mishandles the leading `-` sign for certain negative-number digit counts, producing e.g. `"-,123,456"` instead of `"-123,456"`.
 - **[scr_SaveWeb.gml / scr_save_script.gml, lines 427-441]** — The web save-export builds one comma-separated string from many unescaped free-form fields; a field containing a literal comma would shift and corrupt every subsequent field on import (acknowledged in the code's own comment as "the worst export ever").
 
-### Minor (77)
+### Minor (74)
 
 *Cosmetic issues, dead/redundant code, leftover debug artifacts, fragile-but-working code.*
 
@@ -191,9 +191,6 @@ Exhaustive review of all 278 objects (`objects/*.object.gmx`) and all 75 scripts
 - **[scr_HitmenNamesReturn.gml, ~lines 103, 112]** — "Baba, " appears twice in the name list; cosmetic weighting quirk.
 - **[scr_DialogueDraw.gml / scr_DrawHoverString.gml]** — A few statements missing trailing semicolons.
 - **[scr_FirstTimeSetupTrophies.gml]** — No error handling if `ini_open`/`file_ensure` fails partway through its 30-file write; low risk, no recovery path.
-- **[scr_SharedInspectorArmourQuantities.gml, line 1]** — Leftover "Melee weapons" comment on what is actually the Armour page block.
-- **[scr_SharedInspectorAutomaticsQuantities.gml, line 25]** — Missing trailing semicolon, inconsistent with sibling lines.
-- **[scr_UpgradeStatsMenuCloseFunction.gml, line 108]** — Debug message text says "LAS_VEGAS" inside the London code block (copy-paste leftover in a log string).
 - **[scr_save_script.gml, lines 420-423]** — A second, empty, redundant `if os_browser == browser_not_a_browser` block runs right after the first.
 - **[scr_deduct_money.gml]** — Function is effectively named/structured as a debug build (`scr_deduct_money_debug`, heavy `show_debug_message` use) promoted to production without cleanup; Trillion/Quadrillion/infinity-money tiers are unimplemented here, consistent with the rest of the codebase.
 
@@ -239,6 +236,7 @@ Bugs found via manual testing/report (outside the original 150-item automated re
 - [2026-07-21] Fixed the Trip "select a Transport Type" error message using the wrong threshold (`obj_black_market_trips_finalise_start_button.object.gmx`) — the actual start requirement is `global.rentCostSlotsTotals >= 25000`, but the error-catcher only showed the "You must select at least one Transport Type" message `if rentCostSlotsTotals <= 0`, so a total between $1 and $24,999 failed the start check silently with no explanation. Changed the message condition to `< 25000` to match the real rule (and the cost-colour rule fixed earlier).
 - [2026-07-21] Fixed the native save/load city mismatch (`scr_save_script.gml`/`scr_LoadGameScript.gml`) — the save wrote `global.currentCity` under the ini section `"Checker"`, but the load read it back from `"Checkers"` (a different section), so the saved city could never be restored and always fell back to `"NEW_YORK"` on load, potentially running city-dependent boss/menu/cleanup/world-map logic against the wrong city's state after loading. Changed the load to read from `"Checker"` to match the write.
 - [2026-07-21] Fixed the Trips Agents cost-display formatting inconsistency (`obj_black_market_trips_agents_pop_up_stats.object.gmx`) — only the Slot 1/page 1 block formatted the "Agent Generate Cost" line with `"$" + scr_number_sep(...)`; the other 17 slot/page blocks (slots 2-18) just drew the raw number. Updated all 17 to match Slot 1's formatting for parity.
+- [2026-07-21] Fixed three cosmetic/dev-only leftovers: `scr_SharedInspectorArmourQuantities.gml`'s page-1 comment said `//Melee weapons` instead of `//Armour`; `scr_SharedInspectorAutomaticsQuantities.gml` was missing a trailing semicolon on the `asVal9RifleQuantity` assignment; `scr_UpgradeStatsMenuCloseFunction.gml`'s London `with` block logged `"obj_TEXTURE_LAS_VEGAS_PAGE1_2 alpha set to 255."` instead of the London object's own name. All three corrected.
 
 ## itch.io Patch Notes
 

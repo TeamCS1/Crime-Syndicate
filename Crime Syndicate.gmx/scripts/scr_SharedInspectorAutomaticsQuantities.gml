@@ -22,7 +22,7 @@ if obj_black_market_shop_gui_upper_piece.currentPage == 4   //Automatics
     
     else if itemIndex == 4   
     {
-        quantity = global.asVal9RifleQuantity
+        quantity = global.asVal9RifleQuantity;
     }
     
     else if itemIndex == 5   

@@ -105,7 +105,7 @@ with obj_TEXTURE_CHICAGO_PAGE1_2
 with obj_TEXTURE_LONDON_PAGE1_2
 {
     image_alpha = 1
-    show_debug_message("obj_TEXTURE_LAS_VEGAS_PAGE1_2 alpha set to 255.")
+    show_debug_message("obj_TEXTURE_LONDON_PAGE1_2 alpha set to 255.")
 }
 
 with obj_TEXTURE_LAS_VEGAS_PAGE1_2

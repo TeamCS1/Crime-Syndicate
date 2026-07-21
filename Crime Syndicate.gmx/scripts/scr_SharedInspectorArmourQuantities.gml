@@ -1,4 +1,4 @@
-if obj_black_market_shop_gui_upper_piece.currentPage == 1   //Melee weapons
+if obj_black_market_shop_gui_upper_piece.currentPage == 1   //Armour
 {
     if itemIndex == 0   //Ballbuster
     {
