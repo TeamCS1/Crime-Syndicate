@@ -64,7 +64,7 @@ GameMaker Studio 1.4 is used locally to compile and test the project. When compi
 
 ## Known Bugs (Full Codebase Review)
 
-Exhaustive review of all 278 objects (`objects/*.object.gmx`) and all 75 scripts (`scripts/*.gml`), conducted via 10 parallel deep-dive passes. **Totals: 6 Major, 41 Medium, 78 Minor open — 125 open, 20 fixed.** (Five additional findings — `obj_black_market_main_contracts_button.object.gmx` and `obj_black_market_main_statistics_button.object.gmx` missing click events, `scr_CreateOptions.gml`'s unconditional debug-button creation, the `instance_destroy(id, execute_event)` two-argument form flagged in `obj_enter.object.gmx`, and `scr_deduct_money.gml` only ever setting `moneySuffix` to `"Billion"` or `""` — were reviewed and confirmed to be intentional/unimplemented functionality or a false positive rather than bugs, and removed from this list.) When a bug below is fixed, move its entry to the Completed / Patch Notes section below with a short note on the fix, rather than deleting it.
+Exhaustive review of all 278 objects (`objects/*.object.gmx`) and all 75 scripts (`scripts/*.gml`), conducted via 10 parallel deep-dive passes. **Totals: 6 Major, 41 Medium, 77 Minor open — 124 open, 21 fixed.** (Five additional findings — `obj_black_market_main_contracts_button.object.gmx` and `obj_black_market_main_statistics_button.object.gmx` missing click events, `scr_CreateOptions.gml`'s unconditional debug-button creation, the `instance_destroy(id, execute_event)` two-argument form flagged in `obj_enter.object.gmx`, and `scr_deduct_money.gml` only ever setting `moneySuffix` to `"Billion"` or `""` — were reviewed and confirmed to be intentional/unimplemented functionality or a false positive rather than bugs, and removed from this list.) When a bug below is fixed, move its entry to the Completed / Patch Notes section below with a short note on the fix, rather than deleting it.
 
 ### Major (6)
 
@@ -122,7 +122,7 @@ Exhaustive review of all 278 objects (`objects/*.object.gmx`) and all 75 scripts
 - **[scr_number_sep.gml, lines 11-19]** — Thousands-separator grouping mishandles the leading `-` sign for certain negative-number digit counts, producing e.g. `"-,123,456"` instead of `"-123,456"`.
 - **[scr_SaveWeb.gml / scr_save_script.gml, lines 427-441]** — The web save-export builds one comma-separated string from many unescaped free-form fields; a field containing a literal comma would shift and corrupt every subsequent field on import (acknowledged in the code's own comment as "the worst export ever").
 
-### Minor (78)
+### Minor (77)
 
 *Cosmetic issues, dead/redundant code, leftover debug artifacts, fragile-but-working code.*
 
@@ -146,7 +146,6 @@ Exhaustive review of all 278 objects (`objects/*.object.gmx`) and all 75 scripts
 - **[obj_black_market_gui.object.gmx, Draw]** — `draw_set_valign(fa_left)` passes a horizontal-align constant into the vertical-align setter (harmless since both equal 0).
 - **[obj_attack_damage_button.object.gmx, Left Released]** — Guards spending with `!= 0` rather than `> 0`.
 - **[obj_chicagoJobOneBar…FiveBar.object.gmx, Draw GUI]** — `global.jobXBarChicago = (global.jobXBarChicago / 100) * 100;` is a mathematical no-op, repeated in all five files.
-- **[obj_black_market_trips_agents_pop_up_stats.object.gmx, Draw GUI]** — Slot1/page1 formats cost with `$` + separator; every other slot/page block doesn't. Cosmetic inconsistency.
 - **[obj_black_market_slots.object.gmx, Left Release event]** — Leftover `show_debug_message(...)` calls.
 - **[obj_city_bosses_battle_screen.object.gmx, Draw GUI]** — Leftover "New York" comment copy-pasted into Chicago/London/Las Vegas blocks (comment-only).
 - **[obj_city_bosses_battle_screen.object.gmx, Draw GUI]** — All cities intentionally share `global.currentNewYorkCityBossBarMultiplierTierOne` (per the code's own "needs renaming" comment) — misleading name, not a bug, but a trap for a future "fix."
@@ -234,6 +233,7 @@ Bugs found via manual testing/report (outside the original 150-item automated re
 - [2026-07-21] Fixed the Trip Start button ignoring Million/Billion/Trillion money and closing the finalise menu on a failed start (`obj_black_market_trips_finalise_start_button.object.gmx`) — the affordability check/payment only ever touched `global.moneyCount` directly (`if moneyCount >= calculation { moneyCount -= calculation; }`), rejecting trips a player could clearly afford once their cash sat in higher tiers, and unlike every other purchase flow in the project didn't use `scr_deduct_money`. Separately, the event's second action (menu cleanup / opening the trip manager) independently re-derived a *different*, looser set of conditions that didn't check the loadout/agency confirmation ticks, so it could still close the finalise UI and open the manager even when the main start block had failed and no trip was charged or started. Replaced the direct `moneyCount` check with `scr_deduct_money(calculation)` as the last (short-circuited) condition in the main `if`, so payment is never attempted until every non-financial condition has already passed, and added a `tripStartedSuccessfully` flag set only inside the successful branch; the cleanup action now gates purely on that flag instead of re-checking (a subset of) the same conditions.
 - [2026-07-21] Fixed the Trip "select a Transport Type" error message using the wrong threshold (`obj_black_market_trips_finalise_start_button.object.gmx`) — the actual start requirement is `global.rentCostSlotsTotals >= 25000`, but the error-catcher only showed the "You must select at least one Transport Type" message `if rentCostSlotsTotals <= 0`, so a total between $1 and $24,999 failed the start check silently with no explanation. Changed the message condition to `< 25000` to match the real rule (and the cost-colour rule fixed earlier).
 - [2026-07-21] Fixed the native save/load city mismatch (`scr_save_script.gml`/`scr_LoadGameScript.gml`) — the save wrote `global.currentCity` under the ini section `"Checker"`, but the load read it back from `"Checkers"` (a different section), so the saved city could never be restored and always fell back to `"NEW_YORK"` on load, potentially running city-dependent boss/menu/cleanup/world-map logic against the wrong city's state after loading. Changed the load to read from `"Checker"` to match the write.
+- [2026-07-21] Fixed the Trips Agents cost-display formatting inconsistency (`obj_black_market_trips_agents_pop_up_stats.object.gmx`) — only the Slot 1/page 1 block formatted the "Agent Generate Cost" line with `"$" + scr_number_sep(...)`; the other 17 slot/page blocks (slots 2-18) just drew the raw number. Updated all 17 to match Slot 1's formatting for parity.
 
 ## itch.io Patch Notes
 
@@ -265,3 +265,4 @@ Player-facing changelog, one line per fix, newest last — copy straight into an
 - Fixed the Trip Confirm screen sometimes closing and opening the trip manager even when the trip wasn't actually started.
 - Fixed the Trip Confirm screen not explaining why you were blocked when your transport combo was below the minimum cost.
 - Fixed your current city not being remembered between play sessions.
+- Fixed the Trips Agents cost display not formatting the price consistently across all slots.

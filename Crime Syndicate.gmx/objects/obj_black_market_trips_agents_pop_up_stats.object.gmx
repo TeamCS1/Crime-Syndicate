@@ -106,7 +106,7 @@ else if obj_black_market_trips_agents_panel_gui.mouseEnterCurrentSlot == 1 &amp;
     //if slot is empty then
     if global.slot10Status == "EMPTY"
     {
-        draw_text(x + 10,y + 20,string("Agent Generate Cost: ") + string(global.slotPrice)) 
+        draw_text(x + 10,y + 20,string("Agent Generate Cost: ") + "$" + string(scr_number_sep(global.slotPrice,",",3))) 
     }
     
     //if slot is purchased then
@@ -132,7 +132,7 @@ else if obj_black_market_trips_agents_panel_gui.mouseEnterCurrentSlot == 2 &amp;
     //if slot is empty then
     if global.slot2Status == "EMPTY"
     {
-        draw_text(x + 10,y + 20,string("Agent Generate Cost: ") + string(global.slotPrice)) 
+        draw_text(x + 10,y + 20,string("Agent Generate Cost: ") + "$" + string(scr_number_sep(global.slotPrice,",",3))) 
     }
     
     //if slot is purchased then
@@ -160,7 +160,7 @@ else if obj_black_market_trips_agents_panel_gui.mouseEnterCurrentSlot == 2 &amp;
     //if slot is empty then
     if global.slot11Status == "EMPTY"
     {
-        draw_text(x + 10,y + 20,string("Agent Generate Cost: ") + string(global.slotPrice)) 
+        draw_text(x + 10,y + 20,string("Agent Generate Cost: ") + "$" + string(scr_number_sep(global.slotPrice,",",3))) 
     }
     
     //if slot is purchased then
@@ -210,7 +210,7 @@ if obj_black_market_trips_agents_panel_gui.mouseEnterCurrentSlot == 3 &amp;&amp;
     //if slot is empty then
     if global.slot3Status == "EMPTY"
     {
-        draw_text(x + 10,y + 20,string("Agent Generate Cost: ") + string(global.slotPrice)) 
+        draw_text(x + 10,y + 20,string("Agent Generate Cost: ") + "$" + string(scr_number_sep(global.slotPrice,",",3))) 
     }
     
     //if slot is purchased then
@@ -238,7 +238,7 @@ else if obj_black_market_trips_agents_panel_gui.mouseEnterCurrentSlot == 3 &amp;
     //if slot is empty then
     if global.slot12Status == "EMPTY"
     {
-        draw_text(x + 10,y + 20,string("Agent Generate Cost: ") + string(global.slotPrice)) 
+        draw_text(x + 10,y + 20,string("Agent Generate Cost: ") + "$" + string(scr_number_sep(global.slotPrice,",",3))) 
     }
     
     //if slot is purchased then
@@ -289,7 +289,7 @@ if obj_black_market_trips_agents_panel_gui.mouseEnterCurrentSlot == 4 &amp;&amp;
     //if slot is empty then
     if global.slot4Status == "EMPTY"
     {
-        draw_text(x + 10,y + 20,string("Agent Generate Cost: ") + string(global.slotPrice)) 
+        draw_text(x + 10,y + 20,string("Agent Generate Cost: ") + "$" + string(scr_number_sep(global.slotPrice,",",3))) 
     }
     
     //if slot is purchased then
@@ -317,7 +317,7 @@ else if obj_black_market_trips_agents_panel_gui.mouseEnterCurrentSlot == 4 &amp;
     //if slot is empty then
     if global.slot13Status == "EMPTY"
     {
-        draw_text(x + 10,y + 20,string("Agent Generate Cost: ") + string(global.slotPrice)) 
+        draw_text(x + 10,y + 20,string("Agent Generate Cost: ") + "$" + string(scr_number_sep(global.slotPrice,",",3))) 
     }
     
     //if slot is purchased then
@@ -368,7 +368,7 @@ if obj_black_market_trips_agents_panel_gui.mouseEnterCurrentSlot == 5 &amp;&amp;
     //if slot is empty then
     if global.slot5Status == "EMPTY"
     {
-        draw_text(x + 10,y + 20,string("Agent Generate Cost: ") + string(global.slotPrice)) 
+        draw_text(x + 10,y + 20,string("Agent Generate Cost: ") + "$" + string(scr_number_sep(global.slotPrice,",",3))) 
     }
     
     //if slot is purchased then
@@ -396,7 +396,7 @@ else if obj_black_market_trips_agents_panel_gui.mouseEnterCurrentSlot == 5 &amp;
     //if slot is empty then
     if global.slot14Status == "EMPTY"
     {
-        draw_text(x + 10,y + 20,string("Agent Generate Cost: ") + string(global.slotPrice)) 
+        draw_text(x + 10,y + 20,string("Agent Generate Cost: ") + "$" + string(scr_number_sep(global.slotPrice,",",3))) 
     }
     
     //if slot is purchased then
@@ -447,7 +447,7 @@ if obj_black_market_trips_agents_panel_gui.mouseEnterCurrentSlot == 6 &amp;&amp;
     //if slot is empty then
     if global.slot6Status == "EMPTY"
     {
-        draw_text(x + 10,y + 20,string("Agent Generate Cost: ") + string(global.slotPrice)) 
+        draw_text(x + 10,y + 20,string("Agent Generate Cost: ") + "$" + string(scr_number_sep(global.slotPrice,",",3))) 
     }
     
     //if slot is purchased then
@@ -475,7 +475,7 @@ else if obj_black_market_trips_agents_panel_gui.mouseEnterCurrentSlot == 6 &amp;
     //if slot is empty then
     if global.slot15Status == "EMPTY"
     {
-        draw_text(x + 10,y + 20,string("Agent Generate Cost: ") + string(global.slotPrice)) 
+        draw_text(x + 10,y + 20,string("Agent Generate Cost: ") + "$" + string(scr_number_sep(global.slotPrice,",",3))) 
     }
     
     //if slot is purchased then
@@ -526,7 +526,7 @@ if obj_black_market_trips_agents_panel_gui.mouseEnterCurrentSlot == 7 &amp;&amp;
     //if slot is empty then
     if global.slot7Status == "EMPTY"
     {
-        draw_text(x + 10,y + 20,string("Agent Generate Cost: ") + string(global.slotPrice)) 
+        draw_text(x + 10,y + 20,string("Agent Generate Cost: ") + "$" + string(scr_number_sep(global.slotPrice,",",3))) 
     }
     
     //if slot is purchased then
@@ -554,7 +554,7 @@ else if obj_black_market_trips_agents_panel_gui.mouseEnterCurrentSlot == 7 &amp;
     //if slot is empty then
     if global.slot16Status == "EMPTY"
     {
-        draw_text(x + 10,y + 20,string("Agent Generate Cost: ") + string(global.slotPrice)) 
+        draw_text(x + 10,y + 20,string("Agent Generate Cost: ") + "$" + string(scr_number_sep(global.slotPrice,",",3))) 
     }
     
     //if slot is purchased then
@@ -605,7 +605,7 @@ if obj_black_market_trips_agents_panel_gui.mouseEnterCurrentSlot == 8 &amp;&amp;
     //if slot is empty then
     if global.slot8Status == "EMPTY"
     {
-        draw_text(x + 10,y + 20,string("Agent Generate Cost: ") + string(global.slotPrice)) 
+        draw_text(x + 10,y + 20,string("Agent Generate Cost: ") + "$" + string(scr_number_sep(global.slotPrice,",",3))) 
     }
     
     //if slot is purchased then
@@ -633,7 +633,7 @@ else if obj_black_market_trips_agents_panel_gui.mouseEnterCurrentSlot == 8 &amp;
     //if slot is empty then
     if global.slot17Status == "EMPTY"
     {
-        draw_text(x + 10,y + 20,string("Agent Generate Cost: ") + string(global.slotPrice)) 
+        draw_text(x + 10,y + 20,string("Agent Generate Cost: ") + "$" + string(scr_number_sep(global.slotPrice,",",3))) 
     }
     
     //if slot is purchased then
@@ -684,7 +684,7 @@ if obj_black_market_trips_agents_panel_gui.mouseEnterCurrentSlot == 9 &amp;&amp;
     //if slot is empty then
     if global.slot9Status == "EMPTY"
     {
-        draw_text(x + 10,y + 20,string("Agent Generate Cost: ") + string(global.slotPrice)) 
+        draw_text(x + 10,y + 20,string("Agent Generate Cost: ") + "$" + string(scr_number_sep(global.slotPrice,",",3))) 
     }
     
     //if slot is purchased then
@@ -712,7 +712,7 @@ else if obj_black_market_trips_agents_panel_gui.mouseEnterCurrentSlot == 9 &amp;
     //if slot is empty then
     if global.slot18Status == "EMPTY"
     {
-        draw_text(x + 10,y + 20,string("Agent Generate Cost: ") + string(global.slotPrice)) 
+        draw_text(x + 10,y + 20,string("Agent Generate Cost: ") + "$" + string(scr_number_sep(global.slotPrice,",",3))) 
     }
     
     //if slot is purchased then
