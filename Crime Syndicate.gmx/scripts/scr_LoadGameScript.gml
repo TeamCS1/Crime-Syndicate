@@ -25,7 +25,7 @@ if os_browser == browser_not_a_browser
     global.skillPointsRemaining = ini_read_real("savegame", "skillPointsRemaining", 0);
 
     //Checker - 1
-    global.currentCity = ini_read_string("Checkers", "currentCity", "NEW_YORK");
+    global.currentCity = ini_read_string("Checker", "currentCity", "NEW_YORK");
     
     //Options menu - 11
     global.showStatusBar = ini_read_real("options", "showStatusBar",1) 
