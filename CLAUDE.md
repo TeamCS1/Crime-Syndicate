@@ -231,6 +231,7 @@ Bugs found via manual testing/report (outside the original 150-item automated re
 
 - [2026-07-20] Fixed hitmen bounty inflation from `global.currentPlayerLevelUpperBound` growing without bound (`obj_hitmen_sectionOne.object.gmx`, `obj_hitmen_sectionTwo.object.gmx`, `obj_hitmen_sectionThree.object.gmx`) — the shared global started at `-1` and every hitmen calculation in all three sections did `global.currentPlayerLevelUpperBound += irandom_range(...)` instead of resetting it, so it grew permanently across every hitman ever generated in any section, inflating later bounty rolls (`hitmenBounty += irandom_range(currentPlayerLevel, currentPlayerLevelUpperBound * 1.5)`) far beyond intended level scaling the longer a session ran. Changed all three `+=` to `=` so the upper bound is assigned fresh for each calculation instead of accumulating.
 - [2026-07-20] Fixed the hitman victory screen always showing Section One's bounty/XP regardless of which section was actually defeated (`obj_hitman_killed_GUI.object.gmx`) — the Create event correctly identified the defeated hitman's name/title per section, but the Draw GUI event hardcoded `global.hitmenBounty`/`global.hitmenXPChance` (Section One's globals) instead of reading the matching Section Two/Three reward globals. Added `bountyToDisplay`/`xpToDisplay` locals set alongside `nameToDisplay`/`titleToDisplay` in the Create event, and draw those instead.
+- [2026-07-21] Fixed Trip Slots 2-8 rejecting players with exactly the required money (`obj_trips_slot2.object.gmx` through `obj_trips_slot8.object.gmx`) — every Locked-purchase check used strict `>` for both the `moneyCountMillion` and `moneyCount` conditions (e.g. Slot 2 required `moneyCountMillion > 1` while only deducting `1`), so a player with the exact price in hand couldn't buy despite having sufficient funds. Changed all 14 comparisons (2 per slot) from `>` to `>=`.
 
 ## itch.io Patch Notes
 
@@ -257,3 +258,4 @@ Player-facing changelog, one line per fix, newest last — copy straight into an
 - Fixed job loot drop odds being lower than intended.
 - Fixed hitmen bounties inflating the longer you played instead of scaling properly with your level.
 - Fixed the hitman victory screen always showing the wrong bounty and XP reward.
+- Fixed Trip Slots 2 through 8 not letting you buy them when you had the exact price.

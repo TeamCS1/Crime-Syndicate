@@ -142,7 +142,7 @@ obj_trips_loadout_gui.slotEntered = 7;
           <argument>
             <kind>1</kind>
             <string>//purchase if money is 6.0m and have no other money
-if global.tripsSlot7 == "Locked" &amp;&amp; global.moneyCountMillion &gt; 6
+if global.tripsSlot7 == "Locked" &amp;&amp; global.moneyCountMillion &gt;= 6
 {
     global.moneyCountMillion -= 6;
     
@@ -151,7 +151,7 @@ if global.tripsSlot7 == "Locked" &amp;&amp; global.moneyCountMillion &gt; 6
     image_index = 1;
 }
 
-else if global.tripsSlot7 == "Locked" &amp;&amp; global.moneyCount &gt; 6000000
+else if global.tripsSlot7 == "Locked" &amp;&amp; global.moneyCount &gt;= 6000000
 {
     global.moneyCount -= 6000000
     global.tripsSlot7 = "Owned";
