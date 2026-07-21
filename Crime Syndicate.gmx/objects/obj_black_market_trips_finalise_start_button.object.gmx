@@ -260,10 +260,10 @@ if global.rentCostSlotsTotals &gt;= 25000 &amp;&amp; global.agencyTotalEquipped 
 else
 {
     //check what is missing to activate trip
-    if global.rentCostSlotsTotals &lt;= 0
+    if global.rentCostSlotsTotals &lt; 25000
     {
-        transportType = "You must select at least one Transport Type to proceed.";       
-    } 
+        transportType = "You must select at least one Transport Type to proceed.";
+    }
     
     else
     {
