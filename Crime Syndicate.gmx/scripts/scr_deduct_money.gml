@@ -9,6 +9,19 @@ var b = global.moneyCountBillion;
 var m = global.moneyCountMillion;
 var r = global.moneyCount;
 
+// Normalize the current balance before deducting. Some saves can have more than
+// 999,999 stored in global.moneyCount while global.moneyCountMillion is still 0,
+// which made a 2,077,917 balance look like 0M + 2,077,917 remainder and fail a
+// 1M purchase because the million bucket appeared empty.
+while (r >= 1000000) {
+    m += 1;
+    r -= 1000000;
+}
+while (m >= 1000) {
+    b += 1;
+    m -= 1000;
+}
+
 show_debug_message("Start money: " + string(b) + "B " + string(m) + "M " + string(r));
 show_debug_message("Deducting: " + string(deduct_billion) + "B " + string(deduct_million) + "M " + string(deduct_remainder));
 
@@ -82,6 +95,13 @@ while (m >= 1000) {
 while (r >= 1000000) {
     m += 1;
     r -= 1000000;
+}
+
+// The HUD/save format keeps all sub-billion cash in global.moneyCount. Only keep
+// moneyCountMillion split out while there is at least one billion to display.
+if (b <= 0) {
+    r += m * 1000000;
+    m = 0;
 }
 
 show_debug_message("Final money: " + string(b) + "B " + string(m) + "M " + string(r));
