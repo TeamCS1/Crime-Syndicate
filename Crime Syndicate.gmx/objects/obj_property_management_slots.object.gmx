@@ -244,6 +244,104 @@ if obj_property_management_make_inventory.currentPage == 0   //Melee weapons
         desc = "";
         price = 0;
     }
+
+    with(instance_find(obj_property_management_slots, 16))
+    {
+        name = "";
+        desc = "";
+        price = 0;
+    }
+
+    with(instance_find(obj_property_management_slots, 17))
+    {
+        name = "";
+        desc = "";
+        price = 0;
+    }
+
+    with(instance_find(obj_property_management_slots, 18))
+    {
+        name = "";
+        desc = "";
+        price = 0;
+    }
+
+    with(instance_find(obj_property_management_slots, 19))
+    {
+        name = "";
+        desc = "";
+        price = 0;
+    }
+
+    with(instance_find(obj_property_management_slots, 20))
+    {
+        name = "";
+        desc = "";
+        price = 0;
+    }
+
+    with(instance_find(obj_property_management_slots, 21))
+    {
+        name = "";
+        desc = "";
+        price = 0;
+    }
+
+    with(instance_find(obj_property_management_slots, 22))
+    {
+        name = "";
+        desc = "";
+        price = 0;
+    }
+
+    with(instance_find(obj_property_management_slots, 23))
+    {
+        name = "";
+        desc = "";
+        price = 0;
+    }
+
+    with(instance_find(obj_property_management_slots, 24))
+    {
+        name = "";
+        desc = "";
+        price = 0;
+    }
+
+    with(instance_find(obj_property_management_slots, 25))
+    {
+        name = "";
+        desc = "";
+        price = 0;
+    }
+
+    with(instance_find(obj_property_management_slots, 26))
+    {
+        name = "";
+        desc = "";
+        price = 0;
+    }
+
+    with(instance_find(obj_property_management_slots, 27))
+    {
+        name = "";
+        desc = "";
+        price = 0;
+    }
+
+    with(instance_find(obj_property_management_slots, 28))
+    {
+        name = "";
+        desc = "";
+        price = 0;
+    }
+
+    with(instance_find(obj_property_management_slots, 29))
+    {
+        name = "";
+        desc = "";
+        price = 0;
+    }
 }
 
 else if obj_property_management_make_inventory.currentPage == 1 //Reserved for Armour only

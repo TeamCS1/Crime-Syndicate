@@ -45,7 +45,7 @@
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>global.lastRoom = room;
+            <string>global.roomBeforePrevious = room;
 </string>
           </argument>
         </arguments>
