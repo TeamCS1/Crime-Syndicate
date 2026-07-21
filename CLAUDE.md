@@ -64,7 +64,7 @@ GameMaker Studio 1.4 is used locally to compile and test the project. When compi
 
 ## Known Bugs (Full Codebase Review)
 
-Exhaustive review of all 278 objects (`objects/*.object.gmx`) and all 75 scripts (`scripts/*.gml`), conducted via 10 parallel deep-dive passes. **Totals: 6 Major, 30 Medium, 74 Minor open — 110 open, 29 fixed.** (Seven additional findings — `obj_black_market_main_contracts_button.object.gmx` and `obj_black_market_main_statistics_button.object.gmx` missing click events, `scr_CreateOptions.gml`'s unconditional debug-button creation, the `instance_destroy(id, execute_event)` two-argument form flagged in `obj_enter.object.gmx`, `scr_deduct_money.gml` only ever setting `moneySuffix` to `"Billion"` or `""`, `objLootWindow.object.gmx`'s commented-out Mouse Wheel scroll-move line, and `objGreed.object.gmx`/`objNeed.object.gmx`'s commented-out Mouse Left Pressed body — were reviewed and confirmed to be intentional/unimplemented functionality or a false positive rather than bugs, and removed from this list.) When a bug below is fixed, move its entry to the Completed / Patch Notes section below with a short note on the fix, rather than deleting it.
+Exhaustive review of all 278 objects (`objects/*.object.gmx`) and all 75 scripts (`scripts/*.gml`), conducted via 10 parallel deep-dive passes. **Totals: 6 Major, 26 Medium, 72 Minor, 6 Money System open — 110 open, 29 fixed.** (Seven additional findings — `obj_black_market_main_contracts_button.object.gmx` and `obj_black_market_main_statistics_button.object.gmx` missing click events, `scr_CreateOptions.gml`'s unconditional debug-button creation, the `instance_destroy(id, execute_event)` two-argument form flagged in `obj_enter.object.gmx`, `scr_deduct_money.gml` only ever setting `moneySuffix` to `"Billion"` or `""`, `objLootWindow.object.gmx`'s commented-out Mouse Wheel scroll-move line, and `objGreed.object.gmx`/`objNeed.object.gmx`'s commented-out Mouse Left Pressed body — were reviewed and confirmed to be intentional/unimplemented functionality or a false positive rather than bugs, and removed from this list.) When a bug below is fixed, move its entry to the Completed / Patch Notes section below with a short note on the fix, rather than deleting it.
 
 ### Major (6)
 
@@ -77,7 +77,7 @@ Exhaustive review of all 278 objects (`objects/*.object.gmx`) and all 75 scripts
 - **[obj_inventory_weapon.object.gmx, Step event]** — `if selectedValue == 23` compares a string against the real number 23 once the player has clicked any weapon in the list (`selectedValue` becomes e.g. `"Pistol"` in the Draw event). GML 1.4 throws a type-mismatch runtime error comparing String to Real, crashing the game on the very next Step after any selection. (The `list[pos]` inside that block is also broken independently — `pos` is a `var` local to the Draw event's for-loop and doesn't exist in the Step event.)
 - **[obj_city_bosses_tier_one_button.object.gmx / tier_two_button.object.gmx / tier_three_button.object.gmx, Left-Click event, Chicago block, "Checks what City..." action]** — Code reads `if instance_exists(obj_worldMapChicagoControl)` but then does `with obj_worldMapNewYorkControl { instance_destroy(); }` — destroying the wrong city's controller object, repeated identically in all three tier-button files. Starting a Chicago boss battle never destroys `obj_worldMapChicagoControl`, so the player can still interact with the world map / switch cities mid-Chicago-boss-battle.
 
-### Medium (30)
+### Medium (26)
 
 *Visibly wrong behavior that doesn't crash: wrong city's data, incorrect calculations, broken secondary features.*
 
@@ -93,16 +93,12 @@ Exhaustive review of all 278 objects (`objects/*.object.gmx`) and all 75 scripts
 - **[obj_city_bosses_menu.object.gmx, Create event, all four "Init <City> variables" actions]** — Unconditionally re-randomizes all four cities' Tier 1/2/3 boss `Count`/`Maximum`/rewards on every instantiation with no `if global.currentCity == "..."` guard, silently wiping in-progress boss damage whenever the menu is re-entered for any city.
 - **[obj_city_bosses_weak_attack_button.object.gmx / power_attack_button.object.gmx, Left-Click event]** — Attack gated on `Count != 1`, but large random damage rolls almost always skip past the exact value 1, so weak/power attacks stay usable on a "dead" boss indefinitely instead of forcing the Final Blow finisher.
 - **[obj_hitmen_sectionThree.object.gmx, Draw GUI event]** — AI healthbar text uses the 0–100 percentage variable instead of the actual HP variable as numerator, producing mismatched-scale numbers (e.g. "100000 / 170000" at full health).
-- **[obj_global.object.gmx, Step event, "Money Sorting Machine"]** — Billion-tier conversion sets `global.moneyCount = 0` instead of subtracting 2,000,000,000, discarding any excess earned above the exact threshold.
-- **[obj_global.object.gmx, Step event, "Edge Case 1"]** — Borrow condition `global.moneyCountBillion > 1` should be `> 0`; exactly 1 billion + 0 million never triggers the borrow.
 - **[obj_make_trophies.object.gmx, Room Start event]** — Creates 30 `obj_profile` + 1 `obj_scrollbar` unconditionally every firing (no `!instance_exists` guard); revisiting the room stacks duplicate UI.
 - **[obj_inventory_weapon.object.gmx, Step event]** — Right-click sets `showList` but everything else checks `showListWeapon`; right-click does nothing.
 - **[obj_loot_number.object.gmx, Step event]** — `with other { instance_destroy() }` used outside a Collision/enclosing `with` block, so it doesn't resolve as intended; de-dup logic doesn't work as written.
-- **[obj_propertiesPurchaseOne_bmh.object.gmx, Mouse Left Released, all 13 tiers]** — Only checks `global.moneyCount >= cost` with no Million/Billion fallback; a wealthy player whose money sits in those buckets can't buy despite affording it.
 - **[obj_pause_menu_stats_trigger.object.gmx, Mouse Left Released]** — Writes `global.lastRoom` (unused elsewhere) instead of `global.roomBeforePrevious` (what Options' Back button actually reads); Stats → Back sends the player to a stale/default room.
 - **[obj_properties_home_owner_edit.object.gmx, Step event]** — Sets `propertiesLastEntry = "Player"` then immediately overwrites it with the still-empty `propertiesOwner`; an empty owner name can never recover to "Player".
 - **[obj_property_management_slots.object.gmx, `currentPage == 0` branch]** — Only clears/repopulates slot instances 0-15 of 30; instances 16-29 keep permanent "Loading Properties" placeholder text.
-- **[obj_properties_income_generator.object.gmx, Step event]** — Income ≥2,000,000,000 resets to `0` outright instead of subtracting 2,000,000,000, discarding excess; displayed "net rate" also mixes hourly/per-60-second units with no conversion.
 - **[obj_saving_to_hdd_controller.object.gmx, Create + Draw GUI]** — The "Saving to HDD" banner flag is never set by the real save routine (`scr_save_script.gml`); effectively disconnected from actual save activity.
 - **[obj_trophy_check_interval.object.gmx, obj_trophy_popup_delay.object.gmx, Left Released]** — `get_integer(...)` (real) passed directly into `string_digits(...)` (expects a string) — likely argument-type crash when editing these debug fields.
 - **[obj_sharedInspectorClass.object.gmx, Create/Step/Draw GUI]** — `currentPage == 2` never initializes `price`/`attackDamage`/`defenceProtection`/`elementaryEffect`, but Draw GUI unconditionally reads all four; a crash risk if page 2 is ever reachable.
@@ -111,7 +107,7 @@ Exhaustive review of all 278 objects (`objects/*.object.gmx`) and all 75 scripts
 - **[scr_LoadGameScript.gml, "citybosses" section]** — `global.cityBossNameTierOne/Two/Three` and `global.cityBossesMult` are never read by any load path; they silently reset to defaults every load.
 - **[scr_SaveWeb.gml / scr_save_script.gml, lines 427-441]** — The web save-export builds one comma-separated string from many unescaped free-form fields; a field containing a literal comma would shift and corrupt every subsequent field on import (acknowledged in the code's own comment as "the worst export ever").
 
-### Minor (74)
+### Minor (72)
 
 *Cosmetic issues, dead/redundant code, leftover debug artifacts, fragile-but-working code.*
 
@@ -177,13 +173,22 @@ Exhaustive review of all 278 objects (`objects/*.object.gmx`) and all 75 scripts
 - **[scr_CalculateStorageMaximum.gml, lines 3-15]** — Locals assigned without `var`, polluting instance scope (harmless since overwritten each call).
 - **[scale_canvas.gml, lines 13 & 15]** — Division with no zero-guard; low practical risk given current fixed-constant callers.
 - **[scr_LoadGameScript.gml, ~lines 19, 22, 36-37]** — A few ini-load bootstrap defaults mismatch `scr_Globals.gml`'s defaults; only affects brand-new/missing save keys.
-- **[scr_PropertiesCollect.gml, ~line 17]** — `moneySuffix` only set in the Billion branch; nothing resets it if income later drops below that tier.
 - **[scr_MoverDebug.gml]** — Leftover WASD debug-mover script left in the project.
 - **[scr_HitmenNamesReturn.gml, ~lines 103, 112]** — "Baba, " appears twice in the name list; cosmetic weighting quirk.
 - **[scr_DialogueDraw.gml / scr_DrawHoverString.gml]** — A few statements missing trailing semicolons.
 - **[scr_FirstTimeSetupTrophies.gml]** — No error handling if `ini_open`/`file_ensure` fails partway through its 30-file write; low risk, no recovery path.
 - **[scr_save_script.gml, lines 420-423]** — A second, empty, redundant `if os_browser == browser_not_a_browser` block runs right after the first.
-- **[scr_deduct_money.gml]** — Function is effectively named/structured as a debug build (`scr_deduct_money_debug`, heavy `show_debug_message` use) promoted to production without cleanup; Trillion/Quadrillion/infinity-money tiers are unimplemented here, consistent with the rest of the codebase.
+
+### Money System — Calculator & Borrowing (6)
+
+*Grouped separately because they all touch the same subsystem: the `moneyCount`/`moneyCountMillion`/`moneyCountBillion`/... tier calculator and the `scr_deduct_money` cascading-borrow script, rather than being scattered across the general severity lists. Original severity kept in each entry's tag.*
+
+- **[Medium] [obj_global.object.gmx, Step event, "Money Sorting Machine"]** — Billion-tier conversion sets `global.moneyCount = 0` instead of subtracting 2,000,000,000, discarding any excess earned above the exact threshold.
+- **[Medium] [obj_global.object.gmx, Step event, "Edge Case 1"]** — Borrow condition `global.moneyCountBillion > 1` should be `> 0`; exactly 1 billion + 0 million never triggers the borrow.
+- **[Medium] [obj_propertiesPurchaseOne_bmh.object.gmx, Mouse Left Released, all 13 tiers]** — Only checks `global.moneyCount >= cost` with no Million/Billion fallback; a wealthy player whose money sits in those buckets can't buy despite affording it.
+- **[Medium] [obj_properties_income_generator.object.gmx, Step event]** — Income ≥2,000,000,000 resets to `0` outright instead of subtracting 2,000,000,000, discarding excess; displayed "net rate" also mixes hourly/per-60-second units with no conversion.
+- **[Minor] [scr_PropertiesCollect.gml, ~line 17]** — `moneySuffix` only set in the Billion branch; nothing resets it if income later drops below that tier.
+- **[Minor] [scr_deduct_money.gml]** — Function is effectively named/structured as a debug build (`scr_deduct_money_debug`, heavy `show_debug_message` use) promoted to production without cleanup; Trillion/Quadrillion/infinity-money tiers are unimplemented here, consistent with the rest of the codebase.
 
 **Create/Destroy pair check:** `scr_CreateAgentsMenuGUIBlackMarket`/`scr_DestroyAgentsMenuGUIBlackMarket`, `scr_DestinationsCreateTrips`/`scr_DestinationsDestroyTrips`, `scr_CreateOptions`/`scr_DestroyOptions`, and `scr_DestinationsCreateManageTrips`/`scr_DestinationsDestroyManageTrips` were all verified symmetric (no leaked instances). No `argument_count`-gated latent argument-count traps were found in any script, and all call sites for scripts taking arguments pass the correct argument count.
 
