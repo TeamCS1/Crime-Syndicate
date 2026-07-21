@@ -64,7 +64,7 @@ GameMaker Studio 1.4 is used locally to compile and test the project. When compi
 
 ## Known Bugs (Full Codebase Review)
 
-Exhaustive review of all 278 objects (`objects/*.object.gmx`) and all 75 scripts (`scripts/*.gml`), conducted via 10 parallel deep-dive passes. **Totals: 6 Major, 41 Medium, 77 Minor open — 124 open, 21 fixed.** (Five additional findings — `obj_black_market_main_contracts_button.object.gmx` and `obj_black_market_main_statistics_button.object.gmx` missing click events, `scr_CreateOptions.gml`'s unconditional debug-button creation, the `instance_destroy(id, execute_event)` two-argument form flagged in `obj_enter.object.gmx`, and `scr_deduct_money.gml` only ever setting `moneySuffix` to `"Billion"` or `""` — were reviewed and confirmed to be intentional/unimplemented functionality or a false positive rather than bugs, and removed from this list.) When a bug below is fixed, move its entry to the Completed / Patch Notes section below with a short note on the fix, rather than deleting it.
+Exhaustive review of all 278 objects (`objects/*.object.gmx`) and all 75 scripts (`scripts/*.gml`), conducted via 10 parallel deep-dive passes. **Totals: 6 Major, 39 Medium, 77 Minor open — 122 open, 21 fixed.** (Five additional findings — `obj_black_market_main_contracts_button.object.gmx` and `obj_black_market_main_statistics_button.object.gmx` missing click events, `scr_CreateOptions.gml`'s unconditional debug-button creation, the `instance_destroy(id, execute_event)` two-argument form flagged in `obj_enter.object.gmx`, and `scr_deduct_money.gml` only ever setting `moneySuffix` to `"Billion"` or `""` — were reviewed and confirmed to be intentional/unimplemented functionality or a false positive rather than bugs, and removed from this list.) When a bug below is fixed, move its entry to the Completed / Patch Notes section below with a short note on the fix, rather than deleting it.
 
 ### Major (6)
 
@@ -77,7 +77,7 @@ Exhaustive review of all 278 objects (`objects/*.object.gmx`) and all 75 scripts
 - **[obj_inventory_weapon.object.gmx, Step event]** — `if selectedValue == 23` compares a string against the real number 23 once the player has clicked any weapon in the list (`selectedValue` becomes e.g. `"Pistol"` in the Draw event). GML 1.4 throws a type-mismatch runtime error comparing String to Real, crashing the game on the very next Step after any selection. (The `list[pos]` inside that block is also broken independently — `pos` is a `var` local to the Draw event's for-loop and doesn't exist in the Step event.)
 - **[obj_city_bosses_tier_one_button.object.gmx / tier_two_button.object.gmx / tier_three_button.object.gmx, Left-Click event, Chicago block, "Checks what City..." action]** — Code reads `if instance_exists(obj_worldMapChicagoControl)` but then does `with obj_worldMapNewYorkControl { instance_destroy(); }` — destroying the wrong city's controller object, repeated identically in all three tier-button files. Starting a Chicago boss battle never destroys `obj_worldMapChicagoControl`, so the player can still interact with the world map / switch cities mid-Chicago-boss-battle.
 
-### Medium (41)
+### Medium (39)
 
 *Visibly wrong behavior that doesn't crash: wrong city's data, incorrect calculations, broken secondary features.*
 
@@ -110,12 +110,10 @@ Exhaustive review of all 278 objects (`objects/*.object.gmx`) and all 75 scripts
 - **[obj_pause_menu_stats_trigger.object.gmx, Mouse Left Released]** — Writes `global.lastRoom` (unused elsewhere) instead of `global.roomBeforePrevious` (what Options' Back button actually reads); Stats → Back sends the player to a stale/default room.
 - **[obj_properties_home_owner_edit.object.gmx, Step event]** — Sets `propertiesLastEntry = "Player"` then immediately overwrites it with the still-empty `propertiesOwner`; an empty owner name can never recover to "Player".
 - **[obj_property_management_slots.object.gmx, `currentPage == 0` branch]** — Only clears/repopulates slot instances 0-15 of 30; instances 16-29 keep permanent "Loading Properties" placeholder text.
-- **[obj_options_menu.object.gmx, Draw GUI, `optionsIndex == 0`]** — "Light Theme"/"English" are hardcoded literals instead of reading `global.themeType` or a language global.
 - **[obj_properties_income_generator.object.gmx, Step event]** — Income ≥2,000,000,000 resets to `0` outright instead of subtracting 2,000,000,000, discarding excess; displayed "net rate" also mixes hourly/per-60-second units with no conversion.
 - **[obj_saving_to_hdd_controller.object.gmx, Create + Draw GUI]** — The "Saving to HDD" banner flag is never set by the real save routine (`scr_save_script.gml`); effectively disconnected from actual save activity.
 - **[obj_trophy_check_interval.object.gmx, obj_trophy_popup_delay.object.gmx, Left Released]** — `get_integer(...)` (real) passed directly into `string_digits(...)` (expects a string) — likely argument-type crash when editing these debug fields.
 - **[obj_sharedInspectorClass.object.gmx, Create/Step/Draw GUI]** — `currentPage == 2` never initializes `price`/`attackDamage`/`defenceProtection`/`elementaryEffect`, but Draw GUI unconditionally reads all four; a crash risk if page 2 is ever reachable.
-- **[scr_DebugConsole.gml, lines 115-123]** — `/theme 0`/`/theme 1` assign to an unqualified local `themeType` instead of `global.themeType`; the command silently does nothing.
 - **[scrDrawText.gml, line 15]** — `draw_set_halign(_align)` is never reset afterward, bleeding alignment state into later unrelated draw calls in the same frame.
 - **[scr_CreateTripsLootCities.gml, line 8]** — Only the Bristol destination block sets a non-default loot-window position; all 8 other UK destinations use a different position than intended.
 - **[scr_LoadGameScript.gml, "citybosses" section]** — `global.cityBossNameTierOne/Two/Three` and `global.cityBossesMult` are never read by any load path; they silently reset to defaults every load.
@@ -200,6 +198,13 @@ Exhaustive review of all 278 objects (`objects/*.object.gmx`) and all 75 scripts
 - **[scr_deduct_money.gml]** — Function is effectively named/structured as a debug build (`scr_deduct_money_debug`, heavy `show_debug_message` use) promoted to production without cleanup; Trillion/Quadrillion/infinity-money tiers are unimplemented here, consistent with the rest of the codebase.
 
 **Create/Destroy pair check:** `scr_CreateAgentsMenuGUIBlackMarket`/`scr_DestroyAgentsMenuGUIBlackMarket`, `scr_DestinationsCreateTrips`/`scr_DestinationsDestroyTrips`, `scr_CreateOptions`/`scr_DestroyOptions`, and `scr_DestinationsCreateManageTrips`/`scr_DestinationsDestroyManageTrips` were all verified symmetric (no leaked instances). No `argument_count`-gated latent argument-count traps were found in any script, and all call sites for scripts taking arguments pass the correct argument count.
+
+## 2027 Plans
+
+Not bugs — deferred feature work. These were pulled out of Known Bugs because they're not game-breaking, just incomplete/future-facing functionality (no live theme or language system exists yet for these to hook into).
+
+- **[obj_options_menu.object.gmx, Draw GUI, `optionsIndex == 0`]** — "Light Theme"/"English" are hardcoded literals instead of reading `global.themeType` or a language global. Needs an actual theme/language system built before this can read live state.
+- **[scr_DebugConsole.gml, lines 115-123]** — `/theme 0`/`/theme 1` assign to an unqualified local `themeType` instead of `global.themeType`, so the command silently does nothing. Same dependency as above — worth revisiting once a real theme system exists.
 
 ## Completed / Patch Notes
 
