@@ -47,6 +47,7 @@ There is no separate build/lint/test CLI — this project is built and run throu
 - Use scripts in the traditional GameMaker Studio 1.4 style.
 - Do not rename resources unless explicitly requested.
 - Scripts don't have optional arguments: GMS1.4 fixes a script's required argument count at the highest `argumentN` referenced anywhere in its body, even inside a branch that wouldn't run at runtime (e.g. guarded by `argument_count`). Calling it with fewer arguments than that is a compile-time error, not a graceful default — this actually crashed the project at launch once (see Architecture, Collision). If a script needs to work both with and without extra parameters, write two separate scripts (e.g. `scr_FindSupportHeight()` / `scr_FindSupportHeightAt(x, y)`) rather than branching on `argument_count` inside one.
+- `instance_destroy(id, execute_event)` — the two-argument form — **is** valid in GMS1.4, despite reading like a GMS2-only signature. Do not flag it as incompatible; this was previously misidentified as a bug and confirmed a false positive.
 
 ## Project changes
 
@@ -63,7 +64,7 @@ GameMaker Studio 1.4 is used locally to compile and test the project. When compi
 
 ## Known Bugs (Full Codebase Review)
 
-Exhaustive review of all 278 objects (`objects/*.object.gmx`) and all 75 scripts (`scripts/*.gml`), conducted via 10 parallel deep-dive passes. **Totals: 6 Major, 43 Medium, 78 Minor open — 127 open, 20 fixed.** (Three additional findings — `obj_black_market_main_contracts_button.object.gmx` and `obj_black_market_main_statistics_button.object.gmx` missing click events, and `scr_CreateOptions.gml`'s unconditional debug-button creation — were reviewed and confirmed to be intentional/unimplemented functionality rather than bugs, and removed from this list.) When a bug below is fixed, move its entry to the Completed / Patch Notes section below with a short note on the fix, rather than deleting it.
+Exhaustive review of all 278 objects (`objects/*.object.gmx`) and all 75 scripts (`scripts/*.gml`), conducted via 10 parallel deep-dive passes. **Totals: 6 Major, 42 Medium, 78 Minor open — 126 open, 20 fixed.** (Four additional findings — `obj_black_market_main_contracts_button.object.gmx` and `obj_black_market_main_statistics_button.object.gmx` missing click events, `scr_CreateOptions.gml`'s unconditional debug-button creation, and the `instance_destroy(id, execute_event)` two-argument form flagged in `obj_enter.object.gmx` — were reviewed and confirmed to be intentional/unimplemented functionality or a false positive rather than bugs, and removed from this list.) When a bug below is fixed, move its entry to the Completed / Patch Notes section below with a short note on the fix, rather than deleting it.
 
 ### Major (6)
 
@@ -76,7 +77,7 @@ Exhaustive review of all 278 objects (`objects/*.object.gmx`) and all 75 scripts
 - **[obj_inventory_weapon.object.gmx, Step event]** — `if selectedValue == 23` compares a string against the real number 23 once the player has clicked any weapon in the list (`selectedValue` becomes e.g. `"Pistol"` in the Draw event). GML 1.4 throws a type-mismatch runtime error comparing String to Real, crashing the game on the very next Step after any selection. (The `list[pos]` inside that block is also broken independently — `pos` is a `var` local to the Draw event's for-loop and doesn't exist in the Step event.)
 - **[obj_city_bosses_tier_one_button.object.gmx / tier_two_button.object.gmx / tier_three_button.object.gmx, Left-Click event, Chicago block, "Checks what City..." action]** — Code reads `if instance_exists(obj_worldMapChicagoControl)` but then does `with obj_worldMapNewYorkControl { instance_destroy(); }` — destroying the wrong city's controller object, repeated identically in all three tier-button files. Starting a Chicago boss battle never destroys `obj_worldMapChicagoControl`, so the player can still interact with the world map / switch cities mid-Chicago-boss-battle.
 
-### Medium (43)
+### Medium (42)
 
 *Visibly wrong behavior that doesn't crash: wrong city's data, incorrect calculations, broken secondary features.*
 
@@ -99,7 +100,6 @@ Exhaustive review of all 278 objects (`objects/*.object.gmx`) and all 75 scripts
 - **[obj_city_bosses_weak_attack_button.object.gmx, Mouse-Enter event]** — Tooltip checks `global.chicagoOnJob == "citybosses_CHICAGO"` etc. (uppercase) but the values actually set are lowercase (`"citybosses_london"`); the tooltip never renders correctly for Chicago/London/Las Vegas.
 - **[obj_city_bosses_particles.object.gmx, Create event]** — `global.Sname = part_system_create();` with no Destroy event or `part_system_destroy()` anywhere; every instantiation orphans/leaks the previous particle system.
 - **[obj_city_bosses_weak_attack_button.object.gmx / power_attack_button.object.gmx, Left-Click event]** — Attack gated on `Count != 1`, but large random damage rolls almost always skip past the exact value 1, so weak/power attacks stay usable on a "dead" boss indefinitely instead of forcing the Final Blow finisher.
-- **[obj_enter.object.gmx, Left-Click and Enter-key events]** — `instance_destroy(obj_webCreateTrophiesProgress, true);` uses a two-argument form not supported by GMS1.4's `instance_destroy()` (GMS2-only signature); the same pattern recurs in ~15 other objects project-wide — worth a manual compile check.
 - **[obj_hitmen_sectionThree.object.gmx, Draw GUI event]** — AI healthbar text uses the 0–100 percentage variable instead of the actual HP variable as numerator, producing mismatched-scale numbers (e.g. "100000 / 170000" at full health).
 - **[obj_global.object.gmx, Step event, "Money Sorting Machine"]** — Billion-tier conversion sets `global.moneyCount = 0` instead of subtracting 2,000,000,000, discarding any excess earned above the exact threshold.
 - **[obj_global.object.gmx, Step event, "Edge Case 1"]** — Borrow condition `global.moneyCountBillion > 1` should be `> 0`; exactly 1 billion + 0 million never triggers the borrow.
