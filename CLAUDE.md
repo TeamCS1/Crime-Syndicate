@@ -246,42 +246,4 @@ Bugs found via manual testing/report (outside the original 150-item automated re
 
 Player-facing changelog, one line per fix, newest last — copy straight into an itch.io devlog/update post. Add a new line here whenever an entry is added to Completed / Patch Notes above.
 
-- Fixed London's job progress not saving or ranking up correctly.
-- Fixed an exploit where healing at the Personal Medic with a banked million could net you money instead of costing any.
-- Fixed Trip Slots 3, 4, and 5 charging way less than their listed unlock price.
-- Fixed a crash when interacting with a Trips Agent in slot 12 after it had already been recruited.
-- Fixed a rare bug where jobs could drop top-tier loot at any rank instead of only A-rank.
-- Fixed Agency Level not saving properly between sessions.
-- Fixed a bug where buying certain properties with billions in the bank could send your cash balance negative.
-- Fixed the Trips loadout "Close" button leaving behind invisible leftover buttons.
-- Fixed imported (pasted) saves getting corrupted due to a data misalignment bug.
-- Fixed the New York City Boss victory trophy repeatedly spamming notifications and inflating your trophy count forever.
-- Fixed the Upgrade Stats menu closing the wrong city's map screen during a Chicago, London, or Las Vegas boss fight.
-- Fixed property income above the billion mark being lost instead of collected.
-- Fixed the mid-tier job loot drop not actually giving you anything.
-- Fixed a black-market exploit that let you get items for free instead of properly charging your total balance.
-- Fixed the "On the Verge of Death" city boss trophy only being obtainable at 1 HP instead of 30% health.
-- Fixed the Trips cost display showing valid when your transport combo was actually too cheap to start a trip.
-- Fixed the city boss Flee button giving inconsistent results when you had exactly enough money.
-- Fixed Hard and Extra Hard hitmen not giving the bonus XP they were supposed to.
-- Fixed job loot drop odds being lower than intended.
-- Fixed hitmen bounties inflating the longer you played instead of scaling properly with your level.
-- Fixed the hitman victory screen always showing the wrong bounty and XP reward.
-- Fixed Trip Slots 2 through 8 not letting you buy them when you had the exact price.
-- Fixed starting a Trip not accepting money held in Millions, Billions, or Trillions.
-- Fixed the Trip Confirm screen sometimes closing and opening the trip manager even when the trip wasn't actually started.
-- Fixed the Trip Confirm screen not explaining why you were blocked when your transport combo was below the minimum cost.
-- Fixed your current city not being remembered between play sessions.
-- Fixed the Trips Agents cost display not formatting the price consistently across all slots.
-- Fixed New York's job list buttons rendering at the wrong depth compared to other cities.
-- Fixed the city boss weak-attack tooltip never showing up correctly for Chicago, London, or Las Vegas.
-- Fixed Chicago, London, and Las Vegas's Tier 2 city boss being just as easy as Tier 1 instead of a real step up in difficulty.
-- Fixed the City Bosses panel showing incorrect ATK/DEF numbers for almost every city and tier.
-- Fixed the Signature Move tooltip always describing New York's boss regardless of which city or tier you were actually fighting.
-- Fixed the pause menu's Stats → Back button sending you to the wrong room.
-- Fixed an empty properties owner name never being able to reset back to "Player".
-- Fixed some property management slots getting permanently stuck on a "Loading Properties" placeholder.
-- Fixed a Chicago job that could drive your stamina negative instead of just blocking you when you didn't have enough.
-- Fixed a Las Vegas job-panel texture rendering at the wrong depth compared to other cities.
-- Removed a leftover unused dev object and sprite from the project.
-- Fixed certain purchases (including some properties) being wrongly rejected as unaffordable when your cash balance was held in a way the game didn't recognize as enough.
+- New update released, patch notes reset.
